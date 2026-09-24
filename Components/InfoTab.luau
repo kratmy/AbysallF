@@ -1,22 +1,16 @@
 return function(Window)
     local LatestChangelog = {
-        "5/9/2026",
+        "24.9.2026",
 
 		-- Green = Added
-		"<font color='rgb(0, 255, 0)'>+ Added StemsEntity (Balls), Noise & Creak entities</font>",
-		"<font color='rgb(0, 255, 0)'>+ Added DinkyLamp, BottleCrate, GweenSodaPack, BrokenMonitor & JerryCan</font>",
-		"<font color='rgb(0, 255, 0)'>+ Added Honcho support</font>",
-		"<font color='rgb(0, 255, 0)'>+ Added Stairwell prompt ignores</font>",
 		"<font color='rgb(0, 255, 0)'>+ Added Herobrine</font>",
 
-
-		"<font color='rgb(255, 255, 0)'>~ Updated Sally notification message</font>",
-		"<font color='rgb(255, 255, 0)'>~ Expanded ItemNames & Entities lists</font>",
-		"<font color='rgb(255, 255, 0)'>~ Forgot to add supporter list so i could add it later</font>",
-
+        -- Yellow = Sum shi
+		"<font color='rgb(255, 255, 0)'>~ Updated Nothing</font>",
 
         -- Red = Removed
-        "<font color='rgb(255, 0, 0)'>- Removed FireBacon</font>",
+        "<font color='rgb(255, 0, 0)'>- Removed therealcookiemonsterof1966</font>",
+        "<font color='rgb(255, 0, 0)'>- Removed Malware</font>",
     }
     local function CloneReference(Object)
         if Abysall and Abysall.Environment.cloneref then

@@ -10,7 +10,7 @@ local Services = setmetatable({}, {
 
 
 Services.StarterGui:SetCore("SendNotification", {
-    Title = "Abysall Hub",
+    Title = "Abysall Fork Name",
     Text = "Only DOORS is supported right now, sorry :)",
     Duration = 10,
 })

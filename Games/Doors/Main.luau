@@ -646,7 +646,7 @@ Functions.Notify = function(Settings)
 			end
 		end
 		Globals.DoorsNotify({
-			Title = "Abysall Hub",
+			Title = "Abysall Fork Name",
 			Description = Settings.Title,
 			Reason = Settings.Body,
 			Style = IsEntity and "WARNING" or "NOTIFICATION",
@@ -663,13 +663,13 @@ Functions.Notify = function(Settings)
 
 		if Settings.Image then
 			Globals.STX:Notify(
-				{Title = "Abysall Hub", Description = Settings.Title .. "\n" .. Settings.Body},
+				{Title = "Abysall Fork Name", Description = Settings.Title .. "\n" .. Settings.Body},
 				{OutlineColor = Library.Scheme.AccentColor,Time = Settings.Time or 5, Type = "image"},
 				{Image = Settings.Image, ImageColor = Color3.fromRGB(255, 255, 255)}
 			)
 		else
 			Globals.STX:Notify(
-				{Title = "Abysall Hub", Description = Settings.Title .. "\n" .. Settings.Body},
+				{Title = "Abysall Fork Name", Description = Settings.Title .. "\n" .. Settings.Body},
 				{OutlineColor = Library.Scheme.AccentColor,Time = Settings.Time or 5, Type = "default"}
 			)
 		end
@@ -1208,7 +1208,7 @@ Functions.GetRandomCode = function()
 end
 
 local Window = Library:CreateWindow({
-	Title = "Abysall Hub Continued",
+	Title = "Abysall fork name",
 	Footer = "dsc.gg/abysallhubcontinued",
 	NotifySide = "Right",
 	ShowCustomCursor = false,
