@@ -1209,9 +1209,8 @@ end
 
 local Window = Library:CreateWindow({
 	Title = "Abysall fork name",
-	Footer = "dsc.gg/abysallhubcontinued",
 	NotifySide = "Right",
-	ShowCustomCursor = false,
+	ShowCustomCursor = true,
 	AutoShow = true,
 	Center = true,
 	TabPadding = 3,
