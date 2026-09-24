@@ -51,6 +51,7 @@ return function(Window)
     User:AddLabel("Total Executions: " .. (Abysall.TotalExecutions and Abysall.TotalExecutions or "N/A"), true)
 
 	local CreditsList = {
+        "<font color='rgb(136, 12, 173)'>Kratmy — Owner of this aah fork</font>",
 		"<font color='rgb(0, 255, 255)'>CookieMonster — Owner of the Continued Script</font>",
 		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
 		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
@@ -84,12 +85,12 @@ return function(Window)
     end
 
 	local Scripts = InfoTab:AddLeftGroupbox("Scripts")
-	Scripts:AddButton("InfiniteYield",         { Text = "Infinite Yield",           Default = false, Tooltip = "Runs infinite yield.", 	Func = function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))() end })
-
-
-    local Community = InfoTab:AddLeftGroupbox("Community")
-    Community:AddButton("Copy Discord Invite", function()
-	    toclipboard("https://dsc.gg/abysallhubcontinued")
-	    Library:Notify("Discord invite copied.")
-    end)
+	Scripts:AddButton("InfiniteYield", {
+        Text = "Infinite Yield",
+        Default = false,
+        Tooltip = "Runs infinite yield.",
+        Func = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+        end
+    })
 end
