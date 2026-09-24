@@ -3192,8 +3192,8 @@ Toggles.DoorESPToggle:OnChanged(function(Value)
 				Object = Object, 
 				Text = "Door " .. Functions.GetDoorNumber(Object), 
 				Color = Options.DoorESPColor.Value,
-				Tracers = Toggles.DoorESPTracers and Toggles.DoorESPTracers.Value or false, 
-				Arrows = Toggles.DoorESPArrows and Toggles.DoorESPArrows.Value or false    
+				Tracers = Tracers = Toggles.DoorESPTracers.Value,
+				Arrows = Arrows = Toggles.DoorESPArrows.Value
 			}, true)
 		else 
 			Functions.RemoveESP(Object) 
@@ -3289,8 +3289,8 @@ Toggles.ItemESPToggle:OnChanged(function(Value)
 					Object = Object, 
 					Text = Label, 
 					Color = Options.ItemESPColor.Value,
-					Tracers = Toggles.ItemESPTracers and Toggles.ItemESPTracers.Value or false, 
-					Arrows = Toggles.ItemESPArrows and Toggles.ItemESPArrows.Value or false    
+					Tracers = Tracers = Toggles.ItemESPTracers.Value, 
+					Arrows = Arrows = Toggles.ItemESPArrows.Value    
 				}, Object:GetAttribute("ParentRoom") ~= nil)
 			else
 				Functions.RemoveESP(Object)
