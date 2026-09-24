@@ -3470,7 +3470,6 @@ if Toggles.EntityESPTracers then Toggles.EntityESPTracers:OnChanged(function() S
 if Toggles.EntityESPArrows then Toggles.EntityESPArrows:OnChanged(function() SafeRefreshESP("EntityESPToggle") end) end
 if Options.EntityESPOptions then Options.EntityESPOptions:OnChanged(function() SafeRefreshESP("EntityESPToggle") end) end
 
-
 Tabs.Floors:UpdateWarningBox({
 	Visible = true,
 	Title = "Compatability Warning",
