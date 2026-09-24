@@ -9,7 +9,7 @@ local GameList = {
   [2440500124] = "Doors"
 }
 
-local BaseUrl = "https://raw.githubusercontent.com/bocaj111004/Abysall/refs/heads/main/"
+local BaseUrl = "https://raw.githubusercontent.com/kratmy/AbysallF/refs/heads/main/"
 getgenv().Abysall = {
     Environment = loadstring(game:HttpGet(BaseUrl .. "Components/Environment.luau"))(),
     ESPLibrary = loadstring(game:HttpGet(BaseUrl .. "Components/ESP.luau"))(),
@@ -59,7 +59,7 @@ if Abysall.Environment.writefile and Abysall.Environment.readfile then
 end
 
 Abysall.Interface = loadstring(game:HttpGet(BaseUrl .. "Components/Interface.luau"))()
-Abysall.Analytics = loadstring(game:HttpGet(BaseUrl .. "Components/Analytics.luau"))()
+--no telemetry
 
 local CurrentGame = GameList[game.GameId]
 if CurrentGame then
