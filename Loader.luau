@@ -1,5 +1,5 @@
 if Abysall then
-    return 
+    --return 
 end
 getgenv().Abysall = {
     Legit = true
