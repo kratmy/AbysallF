@@ -1,4 +1,4 @@
-local Library = (Abysall.UILibrary == "Linoria" and "LinoriaLib" or "Obsidian")
+local Library = "Obsidian"
 -- local BaseUrl = "https://raw.githubusercontent.com/mstudio45/" .. Library .. "/refs/heads/main/" -- broken since upio github got banned
 local BaseUrl = "https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/"
 local AbysallUrl = "https://raw.githubusercontent.com/kratmy/AbysallF/refs/heads/main/"

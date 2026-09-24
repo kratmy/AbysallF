@@ -1209,6 +1209,7 @@ end
 
 local Window = Library:CreateWindow({
 	Title = "Abysall fork name",
+	Footer = " ",
 	NotifySide = "Right",
 	ShowCustomCursor = true,
 	AutoShow = true,
