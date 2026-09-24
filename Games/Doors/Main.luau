@@ -1227,9 +1227,6 @@ local Window = Library:CreateWindow({
 
 
 
-
-
-
 Abysall.Interface.ApplyInfoTab(Window)
 
 local Tabs = {
@@ -2834,7 +2831,6 @@ Groupboxes.Visuals_Camera = Groupboxes.Visuals_LeftTab:AddTab("Camera")
 Groupboxes.Visuals_Camera:AddToggle("AmbientToggle", { Text = "Ambient", Default = false, Tooltip = "Changes the lighting color to the specified value." })
 Groupboxes.Visuals_Camera:AddSlider("FieldOfView", { Text = "Field of View", Min = 1, Max = 120, Default = 70, Rounding = 0 })
 Groupboxes.Visuals_Camera:AddToggle("FOVToggle", {    Text = "Custom FOV",    Default = false,    Tooltip = "Only applies the Field of View slider when enabled." })
-Toggles.FOVToggle:AddKeyPicker("FovToggle", {Text = "Custom Fov", Default = "O", Mode = "Toggle", SyncToggleState = true})
 Groupboxes.Visuals_Camera:AddDivider()
 Groupboxes.Visuals_Camera:AddToggle("RemoveCameraShake", {
 	Text = "Remove Camera Shake", Default = false, Tooltip = "Prevents the camera from shaking.",
@@ -3107,30 +3103,66 @@ Options.ObjectiveESPColor:OnChanged(function(Value)
 	end
 end)
 
-Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPToggle",       { Text = "Doors",        Default = false, Tooltip = "Highlights the next door." })
+-- ==================== DOORS ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPToggle", { Text = "Doors", Default = false, Tooltip = "Highlights the next door." })
+Toggles.DoorESPToggle:AddColorPicker("DoorESPColor", { Default = Color3.fromRGB(0, 200, 255), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== HIDING SPOTS ====================
 Groupboxes.Visuals_ESP_Toggles:AddToggle("HidingSpotESPToggle", { Text = "Hiding Spots", Default = false, Tooltip = "Highlights places where you can hide from entities" })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPToggle",     { Text = "Players",      Default = false, Tooltip = "Highlights other players." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPToggle",      { Text = "Chests",       Default = false, Tooltip = "Highlights objects that can contain loot." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPToggle",       { Text = "Items",        Default = false, Tooltip = "Highlights all collectable items/consumables." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPToggle",   { Text = "Currency",     Default = false, Tooltip = "Highlights all currency that spawns." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPToggle",     { Text = "Ladders",      Default = false, Tooltip = "Highlights ladders that can be used to disable the anticheat." })
-Groupboxes.Visuals_ESP_Toggles:AddDivider()
-Groupboxes.Visuals_ESP_Toggles:AddDropdown("EntityESPOptions",     { 
-	Text = "Entity List",
+Toggles.HidingSpotESPToggle:AddColorPicker("HidingSpotESPColor", { Default = Color3.fromRGB(255, 170, 0), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("HidingSpotESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("HidingSpotESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== PLAYERS ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPToggle", { Text = "Players", Default = false, Tooltip = "Highlights other players." })
+Toggles.PlayerESPToggle:AddColorPicker("PlayerESPColor", { Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== CHESTS ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPToggle", { Text = "Chests", Default = false, Tooltip = "Highlights objects that can contain loot." })
+Toggles.ChestESPToggle:AddColorPicker("ChestESPColor", { Default = Color3.fromRGB(255, 255, 0), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== ITEMS ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPToggle", { Text = "Items", Default = false, Tooltip = "Highlights all collectable items/consumables." })
+Toggles.ItemESPToggle:AddColorPicker("ItemESPColor", { Default = Color3.fromRGB(170, 0, 255), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPArrows", { Text = "↳ Draw Arrows", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddDropdown("ItemESPOptions", {
+	Text = "↳ Item List",
+	Values = ItemsToNotify,
+	Multi = true,
+	AllowNull = true
+})
+
+-- ==================== CURRENCY ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPToggle", { Text = "Currency", Default = false, Tooltip = "Highlights all currency that spawns." })
+Toggles.CurrencyESPToggle:AddColorPicker("CurrencyESPColor", { Default = Color3.fromRGB(255, 255, 0), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== LADDERS ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPToggle", { Text = "Ladders", Default = false, Tooltip = "Highlights ladders that can be used to disable the anticheat." })
+Toggles.LadderESPToggle:AddColorPicker("LadderESPColor", { Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPArrows", { Text = "↳ Draw Arrows", Default = false })
+
+-- ==================== ENTITIES ====================
+Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPToggle", { Text = "Entities", Default = false, Tooltip = "Highlights all entities that spawn." })
+Toggles.EntityESPToggle:AddColorPicker("EntityESPColor", { Default = Color3.fromRGB(255, 0, 0), Transparency = 0 })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPTracers", { Text = "↳ Draw Tracers", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPArrows", { Text = "↳ Draw Arrows", Default = false })
+Groupboxes.Visuals_ESP_Toggles:AddDropdown("EntityESPOptions", {
+	Text = "↳ Entity Filter",
 	Values = { "Rush","Bash","Scribbles","Teller","DronesStampede","Creak","Noise","Balls","Ambush","Eyes","Dupe","Figure","Blitz","Lookman","Snare","Giggle","Gloombat Eggs","Grumble","A-60","A-120","Sally","Jeff the Killer","Groundskeeper","Mandrake Hole","Monument","Bramble","AR0xMBUSH","RNIUSHCG==" },
 	Multi = true,
 	AllowNull = true
 })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPToggle",     { Text = "Entities",      Default = false, Tooltip = "Highlights all entities that spawn." })
 
-Toggles.DoorESPToggle:AddColorPicker("DoorESPColor",           { Text = "Doors",        Default = Color3.fromRGB(0, 200, 255),  Transparency = 0 })
-Toggles.HidingSpotESPToggle:AddColorPicker("HidingSpotESPColor", { Text = "Hiding Spots", Default = Color3.fromRGB(255, 170, 0),  Transparency = 0 })
-Toggles.PlayerESPToggle:AddColorPicker("PlayerESPColor",       { Text = "Players",      Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
-Toggles.ChestESPToggle:AddColorPicker("ChestESPColor",         { Text = "Chests",       Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
-Toggles.ItemESPToggle:AddColorPicker("ItemESPColor",           { Text = "Items",        Default = Color3.fromRGB(170, 0, 255),   Transparency = 0 })
-Toggles.CurrencyESPToggle:AddColorPicker("CurrencyESPColor",   { Text = "Currency",     Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
-Toggles.LadderESPToggle:AddColorPicker("LadderESPColor",       { Text = "Ladders",      Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
-Toggles.EntityESPToggle:AddColorPicker("EntityESPColor",       { Text = "Entities",     Default = Color3.fromRGB(255, 0, 0),     Transparency = 0 })
 
 local HidingSpotLabels = {
 	Wardrobe = "Closet", ["Backdoor_Wardrobe"] = "Closet", Toolshed = "Closet",
@@ -3156,8 +3188,17 @@ local NodeEntities = {
 
 Toggles.DoorESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.Doors do
-		if Value then Functions.AddESP({ Object = Object, Text = "Door " .. Functions.GetDoorNumber(Object), Color = Options.DoorESPColor.Value }, true)
-		else Functions.RemoveESP(Object) end
+		if Value then 
+			Functions.AddESP({ 
+				Object = Object, 
+				Text = "Door " .. Functions.GetDoorNumber(Object), 
+				Color = Options.DoorESPColor.Value,
+				Tracers = Toggles.DoorESPTracers.Value, 
+				Arrows = Toggles.DoorESPArrows.Value    
+			}, true)
+		else 
+			Functions.RemoveESP(Object) 
+		end
 	end
 end)
 Options.DoorESPColor:OnChanged(function(Value)
@@ -3167,8 +3208,17 @@ end)
 Toggles.HidingSpotESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.HidingSpots do
 		local Label = HidingSpotLabels[Object.Name]
-		if Value and Label then Functions.AddESP({ Object = Object, Text = Label, Color = Options.HidingSpotESPColor.Value }, true)
-		elseif not Value then Functions.RemoveESP(Object) end
+		if Value and Label then 
+			Functions.AddESP({ 
+				Object = Object, 
+				Text = Label, 
+				Color = Options.HidingSpotESPColor.Value,
+				Tracers = Toggles.HidingSpotESPTracers.Value, 
+				Arrows = Toggles.HidingSpotESPArrows.Value    
+			}, true)
+		elseif not Value then 
+			Functions.RemoveESP(Object) 
+		end
 	end
 end)
 Options.HidingSpotESPColor:OnChanged(function(Value)
@@ -3180,7 +3230,13 @@ Toggles.PlayerESPToggle:OnChanged(function(Value)
 	for _, Player in Services.Players:GetPlayers() do
 		if Player.Character and Player ~= LocalPlayer then
 			if Value and Player:GetAttribute("Alive") == true then
-				Functions.AddESP({ Object = Player.Character, Text = Player.Name, Color = Options.PlayerESPColor.Value })
+				Functions.AddESP({ 
+					Object = Player.Character, 
+					Text = Player.Name, 
+					Color = Options.PlayerESPColor.Value,
+					Tracers = Toggles.PlayerESPTracers.Value, 
+					Arrows = Toggles.PlayerESPArrows.Value    
+				})
 			else
 				Functions.RemoveESP(Player.Character)
 			end
@@ -3206,13 +3262,20 @@ Toggles.ChestESPToggle:OnChanged(function(Value)
 			elseif ChestLabels[Object.Name] and ChestLabels[Object.Name] ~= true then
 				Label = ChestLabels[Object.Name]
 			end
-			if Label then Functions.AddESP({ Object = Object, Text = Label, Color = Options.ChestESPColor.Value }, true) end
+			if Label then 
+				Functions.AddESP({ 
+					Object = Object, 
+					Text = Label, 
+					Color = Options.ChestESPColor.Value,
+					Tracers = Toggles.ChestESPTracers.Value, 
+					Arrows = Toggles.ChestESPArrows.Value    
+				}, true) 
+			end
 		else
 			Functions.RemoveESP(Object)
 		end
 	end
 end)
-
 Options.ChestESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Chests do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
 end)
@@ -3221,12 +3284,26 @@ Toggles.ItemESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.Items do
 		if Value then
 			local Label = ItemNames[Object.Name] or (Object.Name == "Green_Herb" and "Green Herb")
-			if Label then
-				Functions.AddESP({ Object = Object, Text = Label, Color = Options.ItemESPColor.Value }, Object:GetAttribute("ParentRoom") ~= nil)
+			-- Проверяем по твоему новому списку фильтрации из нотифаера
+			if Label and Options.ItemESPOptions.Value[Label] then
+				Functions.AddESP({ 
+					Object = Object, 
+					Text = Label, 
+					Color = Options.ItemESPColor.Value,
+					Tracers = Toggles.ItemESPTracers.Value, 
+					Arrows = Toggles.ItemESPArrows.Value    
+				}, Object:GetAttribute("ParentRoom") ~= nil)
+			else
+				Functions.RemoveESP(Object)
 			end
 		else
 			Functions.RemoveESP(Object)
 		end
+	end
+end)
+Options.ItemESPOptions:OnChanged(function(Value)
+	if Toggles.ItemESPToggle.Value then
+		Toggles.ItemESPToggle:OnChanged(true)
 	end
 end)
 Options.ItemESPColor:OnChanged(function(Value)
@@ -3242,7 +3319,15 @@ Toggles.CurrencyESPToggle:OnChanged(function(Value)
 			elseif Object.Name == "StardustPickup" then
 				Label = "Stardust Pile"
 			end
-			if Label then Functions.AddESP({ Object = Object, Text = Label, Color = Options.CurrencyESPColor.Value }, true) end
+			if Label then 
+				Functions.AddESP({ 
+					Object = Object, 
+					Text = Label, 
+					Color = Options.CurrencyESPColor.Value,
+					Tracers = Toggles.CurrencyESPTracers.Value, 
+					Arrows = Toggles.CurrencyESPArrows.Value    
+				}, true) 
+			end
 		else
 			Functions.RemoveESP(Object)
 		end
@@ -3258,7 +3343,13 @@ Toggles.EntityESPToggle:OnChanged(function(Value)
 			local Label = EntityESPLabels[Object.Name]
 			if not Label and Entities[Object.Name] then Label = Entities[Object.Name].Alias end
 			if Label and Options.EntityESPOptions.Value[Label] then
-				Functions.AddESP({ Object = Object, Text = Label, Color = Options.EntityESPColor.Value }, NodeEntities[Label] ~= true)
+				Functions.AddESP({ 
+					Object = Object, 
+					Text = Label, 
+					Color = Options.EntityESPColor.Value,
+					Tracers = Toggles.EntityESPTracers.Value, 
+					Arrows = Toggles.EntityESPArrows.Value    
+				}, NodeEntities[Label] ~= true)
 			else
 				Functions.RemoveESP(Object)
 			end
@@ -3267,36 +3358,33 @@ Toggles.EntityESPToggle:OnChanged(function(Value)
 		end
 	end
 end)
-
 Options.EntityESPOptions:OnChanged(function(Value)
-	for _, Object in Objects.Entities do
-		if Toggles.EntityESPToggle.Value then
-			local Label = EntityESPLabels[Object.Name]
-			if not Label and Entities[Object.Name] then Label = Entities[Object.Name].Alias end
-			if Label and Options.EntityESPOptions.Value[Label] then
-				Functions.AddESP({ Object = Object, Text = Label, Color = Options.EntityESPColor.Value }, NodeEntities[Label] ~= true)
-			else
-				Functions.RemoveESP(Object)
-			end
-		else
-			Functions.RemoveESP(Object)
-		end
+	if Toggles.EntityESPToggle.Value then
+		Toggles.EntityESPToggle:OnChanged(true)
 	end
 end)
-
 Options.EntityESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Entities do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
 end)
 
 Toggles.LadderESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.Ladders do
-		if Value then Functions.AddESP({ Object = Object, Text = "Ladder", Color = Options.LadderESPColor.Value }, true)
-		else Functions.RemoveESP(Object) end
+		if Value then 
+			Functions.AddESP({ 
+				Object = Object, 
+				Text = "Ladder", 
+				Color = Options.LadderESPColor.Value,
+				Tracers = Toggles.LadderESPTracers.Value, 
+				Arrows = Toggles.LadderESPArrows.Value    
+			}, true)
+		else 
+			Functions.RemoveESP(Object) 
+		end
 	end
 end)
 Options.LadderESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Ladders do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
-end)
+
 
 Groupboxes.Visuals_ESP_Settings:AddToggle("ESPRainbow",     { Text = "Rainbow Effect", Default = false, Tooltip = "Makes the esp objects change colour like a rainbow." })
 Groupboxes.Visuals_ESP_Settings:AddToggle("ESPShowDistance",{ Text = "Show Distance",  Default = true,  Tooltip = "Shows how far away your character is from the object." })
@@ -3316,10 +3404,8 @@ Groupboxes.Visuals_ESP_Settings:AddDropdown("ESPTextFont", {
 Groupboxes.Visuals_ESP_Settings:AddDivider()
 Groupboxes.Visuals_ESP_Settings:AddDropdown("ESPTracersOrigin",  { Text = "Tracer Origin", Values = { "Bottom","Center","Top","Mouse" }, Default = 1 })
 Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTracerThickness",  { Text = "Tracer Thickness", Min = 0.5, Max = 2, Default = 0.75, Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddToggle("ESPTracersToggle",    { Text = "Enable Tracers", Default = false, Tooltip = "Draws a line to highlighted objects." })
 Groupboxes.Visuals_ESP_Settings:AddDivider()
 Groupboxes.Visuals_ESP_Settings:AddSlider("ESPArrowsRadius",     { Text = "Arrow Radius", Min = 100, Max = 500, Default = 250, Rounding = 0, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddToggle("ESPArrowsToggle",     { Text = "Enable Arrows", Default = false, Tooltip = "Shows arrow that point to off-screen objects." })
 
 Abysall.ESPLibrary:SetRainbow(false)
 Abysall.ESPLibrary:SetShowDistance(true)

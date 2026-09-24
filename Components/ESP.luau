@@ -323,7 +323,7 @@ function Library:AddESP(Parameters)
 				end
 			end
 
-			if LineData and CachedHighlight and Library.Tracers == true and OnScreen then
+			if LineData and CachedHighlight and Parameters.Tracers == true and OnScreen then
 				local ScreenSize = Camera.ViewportSize
 				local Origin
 
@@ -355,7 +355,7 @@ function Library:AddESP(Parameters)
 				SK.Thickness = Library.TracerSize
 			end
 
-			if Library.Arrows == true then
+			if Parameters.Arrows == true then
 				local Arrow = Library.ArrowsTable[Object]
 				if Arrow == nil and Library.ElementsEnabled[Object] == true then
 					Arrow = ArrowTemplate:Clone()
