@@ -20,7 +20,6 @@ local BaseUrl = "https://raw.githubusercontent.com/kratmy/AbysallF/main/"
 getgenv().Abysall = {
     Environment = loadstring(game:HttpGet(BaseUrl .. "Components/Environment.luau"))(),
     ESPLibrary = loadstring(game:HttpGet(BaseUrl .. "Components/ESP.luau"))(),
-    ["16Notice"] = loadstring(game:HttpGet(BaseUrl .. "Components/16Notice.luau"))(),
     Legit = true
 }
 
