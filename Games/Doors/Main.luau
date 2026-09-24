@@ -3193,8 +3193,8 @@ Toggles.DoorESPToggle:OnChanged(function(Value)
 				Object = Object, 
 				Text = "Door " .. Functions.GetDoorNumber(Object), 
 				Color = Options.DoorESPColor.Value,
-				Tracers = Toggles.DoorESPTracers.Value, 
-				Arrows = Toggles.DoorESPArrows.Value    
+				Tracers = Toggles.DoorESPTracers and Toggles.DoorESPTracers.Value or false, 
+				Arrows = Toggles.DoorESPArrows and Toggles.DoorESPArrows.Value or false    
 			}, true)
 		else 
 			Functions.RemoveESP(Object) 
@@ -3204,6 +3204,7 @@ end)
 Options.DoorESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Doors do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
 end)
+
 
 Toggles.HidingSpotESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.HidingSpots do
@@ -3284,14 +3285,13 @@ Toggles.ItemESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.Items do
 		if Value then
 			local Label = ItemNames[Object.Name] or (Object.Name == "Green_Herb" and "Green Herb")
-			-- Проверяем по твоему новому списку фильтрации из нотифаера
-			if Label and Options.ItemESPOptions.Value[Label] then
+			if Label and Options.ItemESPOptions and Options.ItemESPOptions.Value and Options.ItemESPOptions.Value[Label] then
 				Functions.AddESP({ 
 					Object = Object, 
 					Text = Label, 
 					Color = Options.ItemESPColor.Value,
-					Tracers = Toggles.ItemESPTracers.Value, 
-					Arrows = Toggles.ItemESPArrows.Value    
+					Tracers = Toggles.ItemESPTracers and Toggles.ItemESPTracers.Value or false, 
+					Arrows = Toggles.ItemESPArrows and Toggles.ItemESPArrows.Value or false    
 				}, Object:GetAttribute("ParentRoom") ~= nil)
 			else
 				Functions.RemoveESP(Object)
@@ -3302,13 +3302,14 @@ Toggles.ItemESPToggle:OnChanged(function(Value)
 	end
 end)
 Options.ItemESPOptions:OnChanged(function(Value)
-	if Toggles.ItemESPToggle.Value then
+	if Toggles.ItemESPToggle and Toggles.ItemESPToggle.Value then
 		Toggles.ItemESPToggle:OnChanged(true)
 	end
 end)
 Options.ItemESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Items do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
 end)
+
 
 Toggles.CurrencyESPToggle:OnChanged(function(Value)
 	for _, Object in Objects.Currency do
