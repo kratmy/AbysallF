@@ -89,14 +89,14 @@ BillboardsFolder.Parent = ScreenGui
 local TracersFrame = Instance.new("Frame")
 TracersFrame.Size = UDim2.new(1, 0, 1, 0)
 TracersFrame.BackgroundTransparency = 1
-TracersFrame.Visible = false
+TracersFrame.Visible = true
 TracersFrame.Name = Library:GenerateRandomString()
 TracersFrame.Parent = ScreenGui
 
 local ArrowsFrame = Instance.new("Frame")
 ArrowsFrame.Size = UDim2.new(1, 0, 1, 0)
 ArrowsFrame.BackgroundTransparency = 1
-ArrowsFrame.Visible = false
+ArrowsFrame.Visible = true
 ArrowsFrame.Name = Library:GenerateRandomString()
 ArrowsFrame.Parent = ScreenGui
 
@@ -267,7 +267,7 @@ function Library:AddESP(Parameters)
 			local LineData = Library.Lines[Object]
 
 			if LineData and LineData[1] then
-				LineData[1].Visible = OnScreen
+				LineData[1].Visible = OnScreen and (Parameters.Tracers == true)
 			end
 
 			if Frame then
@@ -384,6 +384,11 @@ function Library:AddESP(Parameters)
 						Arrow.Visible = true
 						Arrow.ImageColor3 = Library.Rainbow and Library.RainbowColor or Library.ColorTable[Object]
 					end
+				end
+			else
+				local Arrow = Library.ArrowsTable[Object]
+				if Arrow then
+					Arrow.Visible = false
 				end
 			end
 		end
