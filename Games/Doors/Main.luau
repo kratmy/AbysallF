@@ -3435,11 +3435,42 @@ Options.ESPFadeTime:OnChanged(function(V)        Abysall.ESPLibrary:SetFadeTime(
 Options.ESPRenderLimit:OnChanged(function(V)     Abysall.ESPLibrary:SetRenderLimit(V) end)
 Options.ESPTextSize:OnChanged(function(V)        Abysall.ESPLibrary:SetTextSize(V) end)
 Options.ESPTextFont:OnChanged(function(V)        Abysall.ESPLibrary:SetFont(Enum.Font[V]) end)
-Toggles.ESPTracersToggle:OnChanged(function(V)   Abysall.ESPLibrary:SetTracers(V) end)
 Options.ESPTracersOrigin:OnChanged(function(V)   Abysall.ESPLibrary:SetTracerOrigin(V) end)
 Options.ESPTracerThickness:OnChanged(function(V) Abysall.ESPLibrary:SetTracerSize(V) end)
-Toggles.ESPArrowsToggle:OnChanged(function(V)    Abysall.ESPLibrary:SetArrows(V) end)
 Options.ESPArrowsRadius:OnChanged(function(V)    Abysall.ESPLibrary:SetArrowRadius(V) end)
+
+local function SafeRefreshESP(ToggleName)
+    if Toggles[ToggleName] then
+        Toggles[ToggleName]:OnChanged(Toggles[ToggleName].Value)
+    end
+end
+
+if Toggles.DoorESPTracers then Toggles.DoorESPTracers:OnChanged(function() SafeRefreshESP("DoorESPToggle") end) end
+if Toggles.DoorESPArrows then Toggles.DoorESPArrows:OnChanged(function() SafeRefreshESP("DoorESPToggle") end) end
+
+if Toggles.HidingSpotESPTracers then Toggles.HidingSpotESPTracers:OnChanged(function() SafeRefreshESP("HidingSpotESPToggle") end) end
+if Toggles.HidingSpotESPArrows then Toggles.HidingSpotESPArrows:OnChanged(function() SafeRefreshESP("HidingSpotESPToggle") end) end
+
+if Toggles.PlayerESPTracers then Toggles.PlayerESPTracers:OnChanged(function() SafeRefreshESP("PlayerESPToggle") end) end
+if Toggles.PlayerESPArrows then Toggles.PlayerESPArrows:OnChanged(function() SafeRefreshESP("PlayerESPToggle") end) end
+
+if Toggles.ChestESPTracers then Toggles.ChestESPTracers:OnChanged(function() SafeRefreshESP("ChestESPToggle") end) end
+if Toggles.ChestESPArrows then Toggles.ChestESPArrows:OnChanged(function() SafeRefreshESP("ChestESPToggle") end) end
+
+if Toggles.ItemESPTracers then Toggles.ItemESPTracers:OnChanged(function() SafeRefreshESP("ItemESPToggle") end) end
+if Toggles.ItemESPArrows then Toggles.ItemESPArrows:OnChanged(function() SafeRefreshESP("ItemESPToggle") end) end
+if Options.ItemESPOptions then Options.ItemESPOptions:OnChanged(function() SafeRefreshESP("ItemESPToggle") end) end
+
+if Toggles.CurrencyESPTracers then Toggles.CurrencyESPTracers:OnChanged(function() SafeRefreshESP("CurrencyESPToggle") end) end
+if Toggles.CurrencyESPArrows then Toggles.CurrencyESPArrows:OnChanged(function() SafeRefreshESP("CurrencyESPToggle") end) end
+
+if Toggles.LadderESPTracers then Toggles.LadderESPTracers:OnChanged(function() SafeRefreshESP("LadderESPToggle") end) end
+if Toggles.LadderESPArrows then Toggles.LadderESPArrows:OnChanged(function() SafeRefreshESP("LadderESPToggle") end) end
+
+if Toggles.EntityESPTracers then Toggles.EntityESPTracers:OnChanged(function() SafeRefreshESP("EntityESPToggle") end) end
+if Toggles.EntityESPArrows then Toggles.EntityESPArrows:OnChanged(function() SafeRefreshESP("EntityESPToggle") end) end
+if Options.EntityESPOptions then Options.EntityESPOptions:OnChanged(function() SafeRefreshESP("EntityESPToggle") end) end
+
 
 Tabs.Floors:UpdateWarningBox({
 	Visible = true,
