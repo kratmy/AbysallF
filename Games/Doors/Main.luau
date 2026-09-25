@@ -2485,7 +2485,7 @@ Groupboxes.Stairwell_Experimental:AddButton({
     Tooltip = "Brings all dropped items."
 })
 
-Groupboxes.Stairwell_Experimental:AddToggle("AntiNoise", { Text = "Anti Noise", Default = false, Tooltip = "Prevents the game from making noise when moving (Visual studio auto ai lmfao ✌)." })
+Groupboxes.Stairwell_Experimental:AddToggle("AntiNoise", { Text = "Anti Noise", Default = false, Risky = Floor ~= "Stairwell", Tooltip = "Prevents the game from making noise when moving (Visual studio auto ai lmfao ✌)." })
 
 Toggles.AntiNoise:OnChanged(function(value)
 	for i, conn in ipairs(Connections) do
@@ -3397,26 +3397,29 @@ Tabs.Stairwell:UpdateWarningBox({
 Groupboxes.Mines_Automation = Tabs.Mines:AddRightGroupbox("Automation")
 Groupboxes.Mines_Automation:AddToggle("AutoSteerMinecart", {
 	Text = "Auto Steer Minecart", Default = false, Tooltip = "Automatically completes the minecart chase.",
+	Risky = Floor ~= "Mines",
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
 Groupboxes.Mines_Automation:AddSlider("AutoSteerMinecartTurnDistance", {
 	Text = "Turn Distance", Min = 20, Max = 40, Default = 30, Rounding = 0,
+	Risky = Floor ~= "Mines",
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
 Groupboxes.Mines_Automation:AddSlider("AutoSteerMinecartDuckDistance", {
 	Text = "Crouch Distance", Min = 20, Max = 40, Default = 30, Rounding = 0,
+	Risky = Floor ~= "Mines",
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
 
 
 
 Groupboxes.Rooms_Automation = Tabs.Legacy:AddRightGroupbox("Automation")
-Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalk",             { Text = "Auto Rooms",       Default = false, Tooltip = "Automatically moves and hides from entities in The Rooms." })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalk", { Text = "Auto Rooms", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Automatically moves and hides from entities in The Rooms." })
 Groupboxes.Rooms_Automation:AddSlider("RoomsAutoWalkPathfindTimeout", { Text = "Pathfind Timeout", Min = 0.5, Max = 3, Default = 1, Rounding = 1 })
-Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkIgnoreA60",    { Text = "Ignore A-60",      Default = false, Tooltip = "Continues to walk if entity 'A-60' is present, enables position spoof automatically." })
-Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkShowPathToggle", { Text = "Show Path",       Default = false, Tooltip = "Shows the current path of rooms auto-walk." })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkIgnoreA60", { Text = "Ignore A-60", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Continues to walk if entity 'A-60' is present, enables position spoof automatically." })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkShowPathToggle", { Text = "Show Path", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Shows the current path of rooms auto-walk." })
 Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkSpoofFootsteps", {
-    Text = "Spoof Footsteps", Default = false, Tooltip = "Makes it appear as if your character is walking normally.",
+    Text = "Spoof Footsteps", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Makes it appear as if your character is walking normally.",
     Disabled = not Functions.CheckCompatability({"hookmetamethod", "newcclosure", "getnamecallmethod"}), DisabledTooltip = Globals.IncompatibleMessage
 })
 

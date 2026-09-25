@@ -13,6 +13,7 @@ return function(Window)
         "<font color='rgb(255, 255, 0)'>~ Fixed Functions Not Being Red</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Visuals Being Completion</font>",
         "<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
+        "<font color='rgb(255, 255, 0)'>~ Fixed MORE Functions Not Being Red</font>",
 
         -- Red = Removed
         "<font color='rgb(255, 0, 0)'>- Removed Knob Farm :(</font>",
