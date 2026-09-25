@@ -11,6 +11,6 @@ local Services = setmetatable({}, {
 
 Services.StarterGui:SetCore("SendNotification", {
     Title = "Abysall Fork Name",
-    Text = "Only DOORS is supported right now, sorry :)",
+    Text = "This game is not supported right now, sorry :)",
     Duration = 10,
 })
