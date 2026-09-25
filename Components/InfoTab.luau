@@ -5,6 +5,7 @@ return function(Window)
 		-- Green = Added
 		"<font color='rgb(0, 255, 0)'>+ Added Bypassed DarkDexV3</font>",
         "<font color='rgb(0, 255, 0)'>+ ADDED NEW TABS SORT</font>",
+        "<font color='rgb(0, 255, 0)'>+ Enabled Custom Cursor In Doors Lobby</font>",
 
         -- Yellow = Sum shi
 		"<font color='rgb(255, 255, 0)'>~ Updated Default Themes</font>",
