@@ -1995,10 +1995,10 @@ end)
 
 
 Groupboxes.Archives_Bypasses = Tabs.Archives:AddLeftGroupbox("Bypasses")
-Groupboxes.Archives_Bypasses:AddToggle("BypassWater", { Text = "Bypass Electric Water", Default = false, Tooltip = "Prevents electric water from hurting you." })
-Groupboxes.Archives_Bypasses:AddToggle("BypassAlma", { Text = "Bypass Alma", Default = false, Tooltip = "Prevents 'Alma' from spawning." })
-Groupboxes.Archives_Bypasses:AddToggle("BypassDrones",         { Text = "Bypass Drones",           Default = false, Tooltip = "Prevents 'Drones' from attacking you." })
-Groupboxes.Archives_Bypasses:AddToggle("AntiScribbles", { Text = "Bypass Scribbles", Default = false, Tooltip = "Prevents 'Scribbles' from attacking you." })
+Groupboxes.Archives_Bypasses:AddToggle("BypassWater", { Text = "Bypass Electric Water", Default = false, Tooltip = "Prevents electric water from hurting you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Bypasses:AddToggle("BypassAlma", { Text = "Bypass Alma", Default = false, Tooltip = "Prevents 'Alma' from spawning.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Bypasses:AddToggle("BypassDrones",         { Text = "Bypass Drones",           Default = false, Tooltip = "Prevents 'Drones' from attacking you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Bypasses:AddToggle("AntiScribbles", { Text = "Bypass Scribbles", Default = false, Tooltip = "Prevents 'Scribbles' from attacking you.", Risky = Floor ~= "Archives" })
 
 --Groupboxes.Archives_Experimental = Tabs.Archives:AddLeftGroupbox("Experimental") -- empty
 
@@ -2481,6 +2481,7 @@ Groupboxes.Stairwell_Experimental:AddButton({
         end
     end,
     DoubleClick = false,
+	Risky = Floor ~= "Stairwell",
     Tooltip = "Brings all dropped items."
 })
 
@@ -3759,7 +3760,7 @@ Toggles.ShowSeekPathToggle:OnChanged(function(V)  UpdateBeamVisibility(Objects.S
 Options.ShowSeekPathColor:OnChanged(function(V)   UpdateBeamColor(Objects.SeekHighlights, V) end)
 
 
-Groupboxes.Garden_Visuals = Tabs.Garden:AddRightGroupbox("Completion")
+Groupboxes.Garden_Visuals = Tabs.Garden:AddLeftGroupbox("Visuals")
 Groupboxes.Garden_Visuals:AddToggle("ShowEyestalkPathToggle", {
 	Text = "Show Eyestalk Path", Default = false, Tooltip = "Shows you the correct path in the eyestalk chase.",
 	Risky = Floor ~= "Garden"

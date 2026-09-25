@@ -10,6 +10,8 @@ return function(Window)
 		"<font color='rgb(255, 255, 0)'>~ Updated Default Themes</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Queue On Teleport</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Empty Tabs Cuz Im Stupid</font>",
+        "<font color='rgb(255, 255, 0)'>~ Fixed Functions Not Being Red</font>",
+        "<font color='rgb(255, 255, 0)'>~ Fixed Visuals Being Completion</font>",
         "<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
 
         -- Red = Removed
