@@ -63,7 +63,7 @@ function Library:GenerateRandomString()
 	local Pool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	local PoolLen = #Pool
 	for I = 1, 24 do
-		local Idx = math.random(1, PoolLen) 
+		local Idx = math.random(1, PoolLen)
 		Chars[I] = Pool:sub(Idx, Idx)
 	end
 	return table.concat(Chars)
@@ -323,7 +323,7 @@ function Library:AddESP(Parameters)
 				end
 			end
 
-			if LineData and CachedHighlight and Parameters.Tracers == true and OnScreen then
+			if LineData and CachedHighlight and Library.Tracers == true and OnScreen then
 				local ScreenSize = Camera.ViewportSize
 				local Origin
 
@@ -355,7 +355,7 @@ function Library:AddESP(Parameters)
 				SK.Thickness = Library.TracerSize
 			end
 
-			if Parameters.Arrows == true then
+			if Library.Arrows == true then
 				local Arrow = Library.ArrowsTable[Object]
 				if Arrow == nil and Library.ElementsEnabled[Object] == true then
 					Arrow = ArrowTemplate:Clone()
