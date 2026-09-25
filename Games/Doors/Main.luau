@@ -1233,12 +1233,18 @@ local Window = Library:CreateWindow({
 Abysall.Interface.ApplyInfoTab(Window)
 
 local Tabs = {
-	General  = Window:AddTab("General", "house"),
-	Exploits = Window:AddTab("Exploits", "shield"),
-	Visuals  = Window:AddTab("Visuals", "eye"),
-	Floors   = Window:AddTab("Floors", "earth"),
-	Archives  = Window:AddTab("New - Archives", "rbxassetid://104508835882225"),
-	Stairwell = Window:AddTab("New - Stairwell", "rbxassetid://80017304328364"),
+    General   = Window:AddTab("General", "house"),
+    Exploits  = Window:AddTab("Exploits", "shield"),
+    Visuals   = Window:AddTab("Visuals", "eye"),
+	
+    Hotel     = Window:AddTab("The Hotel", "door-open"),
+    Mines     = Window:AddTab("The Mines", "pickaxe"),
+
+    Legacy    = Window:AddTab("Legacy", "archive"),
+
+    Garden  = Window:AddTab("The Outdoors", "trees"), 
+    Archives  = Window:AddTab("Archives", "rbxassetid://104508835882225"),
+    Stairwell = Window:AddTab("Stairwell", "rbxassetid://80017304328364"),
 }
 
 Groupboxes.General_Character = Tabs.General:AddLeftGroupbox("Character")
@@ -3351,31 +3357,64 @@ Options.ESPTracerThickness:OnChanged(function(V) Abysall.ESPLibrary:SetTracerSiz
 Toggles.ESPArrowsToggle:OnChanged(function(V)    Abysall.ESPLibrary:SetArrows(V) end)
 Options.ESPArrowsRadius:OnChanged(function(V)    Abysall.ESPLibrary:SetArrowRadius(V) end)
 
-Tabs.Floors:UpdateWarningBox({
+
+
+-- warnings
+Tabs.Hotel:UpdateWarningBox({
+	Visible = true,
+	Title = "Compatability Warning",
+	Text = "Features highlighted in red do not work in the current floor.",
+})
+Tabs.Mines:UpdateWarningBox({
+	Visible = true,
+	Title = "Compatability Warning",
+	Text = "Features highlighted in red do not work in the current floor.",
+})
+Tabs.Legacy:UpdateWarningBox({
+	Visible = true,
+	Title = "Compatability Warning",
+	Text = "Features highlighted in red do not work in the current floor.",
+})
+Tabs.Garden:UpdateWarningBox({
+	Visible = true,
+	Title = "Compatability Warning",
+	Text = "Features highlighted in red do not work in the current floor.",
+})
+Tabs.Archives:UpdateWarningBox({
+	Visible = true,
+	Title = "Compatability Warning",
+	Text = "Features highlighted in red do not work in the current floor.",
+})
+Tabs.Stairwell:UpdateWarningBox({
 	Visible = true,
 	Title = "Compatability Warning",
 	Text = "Features highlighted in red do not work in the current floor.",
 })
 
-Groupboxes.Floors_Automation = Tabs.Floors:AddRightGroupbox("Automation")
-Groupboxes.Floors_Automation:AddToggle("AutoSteerMinecart", {
+
+
+Groupboxes.Mines_Automation = Tabs.Mines:AddRightGroupbox("Automation")
+Groupboxes.Mines_Automation:AddToggle("AutoSteerMinecart", {
 	Text = "Auto Steer Minecart", Default = false, Tooltip = "Automatically completes the minecart chase.",
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
-Groupboxes.Floors_Automation:AddSlider("AutoSteerMinecartTurnDistance", {
+Groupboxes.Mines_Automation:AddSlider("AutoSteerMinecartTurnDistance", {
 	Text = "Turn Distance", Min = 20, Max = 40, Default = 30, Rounding = 0,
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
-Groupboxes.Floors_Automation:AddSlider("AutoSteerMinecartDuckDistance", {
+Groupboxes.Mines_Automation:AddSlider("AutoSteerMinecartDuckDistance", {
 	Text = "Crouch Distance", Min = 20, Max = 40, Default = 30, Rounding = 0,
 	Disabled = not Functions.CheckCompatability({"require"}), DisabledTooltip = Globals.IncompatibleMessage
 })
-Groupboxes.Floors_Automation:AddDivider()
-Groupboxes.Floors_Automation:AddToggle("RoomsAutoWalk",             { Text = "Auto Rooms",       Default = false, Tooltip = "Automatically moves and hides from entities in The Rooms." })
-Groupboxes.Floors_Automation:AddSlider("RoomsAutoWalkPathfindTimeout", { Text = "Pathfind Timeout", Min = 0.5, Max = 3, Default = 1, Rounding = 1 })
-Groupboxes.Floors_Automation:AddToggle("RoomsAutoWalkIgnoreA60",    { Text = "Ignore A-60",      Default = false, Tooltip = "Continues to walk if entity 'A-60' is present, enables position spoof automatically." })
-Groupboxes.Floors_Automation:AddToggle("RoomsAutoWalkShowPathToggle", { Text = "Show Path",       Default = false, Tooltip = "Shows the current path of rooms auto-walk." })
-Groupboxes.Floors_Automation:AddToggle("RoomsAutoWalkSpoofFootsteps", {
+
+
+
+Groupboxes.Rooms_Automation = Tabs.Legacy:AddRightGroupbox("Automation")
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalk",             { Text = "Auto Rooms",       Default = false, Tooltip = "Automatically moves and hides from entities in The Rooms." })
+Groupboxes.Rooms_Automation:AddSlider("RoomsAutoWalkPathfindTimeout", { Text = "Pathfind Timeout", Min = 0.5, Max = 3, Default = 1, Rounding = 1 })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkIgnoreA60",    { Text = "Ignore A-60",      Default = false, Tooltip = "Continues to walk if entity 'A-60' is present, enables position spoof automatically." })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkShowPathToggle", { Text = "Show Path",       Default = false, Tooltip = "Shows the current path of rooms auto-walk." })
+Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkSpoofFootsteps", {
     Text = "Spoof Footsteps", Default = false, Tooltip = "Makes it appear as if your character is walking normally.",
     Disabled = not Functions.CheckCompatability({"hookmetamethod", "newcclosure", "getnamecallmethod"}), DisabledTooltip = Globals.IncompatibleMessage
 })
@@ -3414,6 +3453,7 @@ Functions.RoomsAutoWalk.GetNearestHidingSpot = function()
 	end
 	return Nearest.Object
 end
+
 
 local RoomsEntityList = { "RushMoving","AmbushMoving","BackdoorRush","A60","A120","CustomEntity","GlitchRush","GlitchAmbush" }
 Functions.RoomsAutoWalk.GetPathfindTarget = function()
@@ -3619,8 +3659,8 @@ Connections.RoomsHandler = CurrentRooms.ChildAdded:Connect(function(Room)
 	end
 end)
 
-Groupboxes.Floors_Completion = Tabs.Floors:AddRightGroupbox("Completion")
-Groupboxes.Floors_Completion:AddButton({
+Groupboxes.Mines_Completion = Tabs.Mines:AddRightGroupbox("Completion")
+Groupboxes.Mines_Completion:AddButton({
     Text = "Auto Complete Dam Seek",
     Tooltip = "Automatically teleports to and interacts with each water pump.",
     Func = function()
@@ -3685,7 +3725,9 @@ Groupboxes.Floors_Completion:AddButton({
     end
 })
 
-Groupboxes.Floors_Completion:AddButton({
+
+Groupboxes.Legacy_Completion = Tabs.Legacy:AddRightGroupbox("Completion")
+Groupboxes.Legacy_Completion:AddButton({
     Text = "Auto Complete Cringle",
     Tooltip = "Instantly completes the quest.",
     Func = function()
@@ -3696,8 +3738,8 @@ Groupboxes.Floors_Completion:AddButton({
     end
 })
 
-Groupboxes.Floors_Visuals = Tabs.Floors:AddLeftGroupbox("Visuals")
-Groupboxes.Floors_Visuals:AddToggle("ShowSeekPathToggle", {
+Groupboxes.Mines_Visuals = Tabs.Mines:AddLeftGroupbox("Visuals")
+Groupboxes.Mines_Visuals:AddToggle("ShowSeekPathToggle", {
 	Text = "Show Seek Path", Default = false, Tooltip = "Shows you the correct path in seek chases.",
 	Risky = Floor ~= "Mines"
 })
@@ -3716,7 +3758,9 @@ end
 Toggles.ShowSeekPathToggle:OnChanged(function(V)  UpdateBeamVisibility(Objects.SeekHighlights, "ShowSeekPathColor", V) end)
 Options.ShowSeekPathColor:OnChanged(function(V)   UpdateBeamColor(Objects.SeekHighlights, V) end)
 
-Groupboxes.Floors_Visuals:AddToggle("ShowEyestalkPathToggle", {
+
+Groupboxes.Garden_Visuals = Tabs.Mines:AddRightGroupbox("Completion")
+Groupboxes.Garden_Visuals:AddToggle("ShowEyestalkPathToggle", {
 	Text = "Show Eyestalk Path", Default = false, Tooltip = "Shows you the correct path in the eyestalk chase.",
 	Risky = Floor ~= "Garden"
 })
@@ -3724,29 +3768,29 @@ Toggles.ShowEyestalkPathToggle:AddColorPicker("ShowEyestalkPathColor", { Text = 
 Toggles.ShowEyestalkPathToggle:OnChanged(function(V) UpdateBeamVisibility(Objects.EyestalkHighlights, "ShowEyestalkPathColor", V) end)
 Options.ShowEyestalkPathColor:OnChanged(function(V)  UpdateBeamColor(Objects.EyestalkHighlights, V) end)
 
-Groupboxes.Floors_Bypass = Tabs.Floors:AddLeftGroupbox("Bypass")
-Groupboxes.Floors_Bypass:AddToggle("RemoveSeekTrigger", {
+Groupboxes.Legacy_Bypass = Tabs.Legacy:AddLeftGroupbox("Bypass")
+Groupboxes.Legacy_Bypass:AddToggle("RemoveSeekTrigger", {
 	Text = "Delete Seek Trigger", Default = false, Tooltip = "Diables the 'Seek' chase trigger.",
 	Risky = not (Floor == "Fools" or Floor == "OldHotel"),
 	Disabled = not Functions.CheckCompatability({"firetouchinterest"}), DisabledTooltip = Globals.IncompatibleMessage
 })
-Groupboxes.Floors_Bypass:AddToggle("RemoveFigure", {
+Groupboxes.Legacy_Bypass:AddToggle("RemoveFigure", {
 	Text = "Delete Figure", Default = false, Tooltip = "Completely removes the entity 'Figure' (doesn't always work).",
 	Risky = not (Floor == "Fools" or Floor == "OldHotel" or Floor == "Mines"),
 	Disabled = not Functions.CheckCompatability({"isnetworkowner"}), DisabledTooltip = Globals.IncompatibleMessage
 })
-Groupboxes.Floors_Bypass:AddToggle("AutoRevive", {
+Groupboxes.Legacy_Bypass:AddToggle("AutoRevive", {
 	Text = "Infinite Revives", Default = false, Tooltip = "Automatically revives after dying, with unlimited respawns.",
 	Risky = not (Floor == "Fools" or Floor == "OldHotel")
 })
-Groupboxes.Floors_Bypass:AddToggle("FigureGodmode", {
+Groupboxes.Legacy_Bypass:AddToggle("FigureGodmode", {
 	Text = "Figure Godmode", Default = false, Tooltip = "Prevents 'Figure' from hurting you.",
 	Risky = not (Floor == "Fools" or Floor == "OldHotel")
 })
-Groupboxes.Floors_Bypass:AddDivider()
-Groupboxes.Floors_Bypass:AddToggle("RemoveBasementGate",  { Text = "Remove Basement Gate",   Default = false, Tooltip = "Removes the gate from basement rooms.",            Risky = not (Floor == "Fools" or Floor == "OldHotel") })
-Groupboxes.Floors_Bypass:AddToggle("RemovePaintingsDoor", { Text = "Remove Paintings Door",  Default = false, Tooltip = "Removes the fireplace doors from painting rooms.", Risky = not (Floor == "Fools" or Floor == "OldHotel") })
-Groupboxes.Floors_Bypass:AddToggle("RemoveSkeletonDoor",  { Text = "Remove Skeleton Door",   Default = false, Tooltip = "Removes the skeleton door from the infirmary.",    Risky = Floor ~= "Fools" })
+Groupboxes.Legacy_Bypass:AddDivider()
+Groupboxes.Legacy_Bypass:AddToggle("RemoveBasementGate",  { Text = "Remove Basement Gate",   Default = false, Tooltip = "Removes the gate from basement rooms.",            Risky = not (Floor == "Fools" or Floor == "OldHotel") })
+Groupboxes.Legacy_Bypass:AddToggle("RemovePaintingsDoor", { Text = "Remove Paintings Door",  Default = false, Tooltip = "Removes the fireplace doors from painting rooms.", Risky = not (Floor == "Fools" or Floor == "OldHotel") })
+Groupboxes.Legacy_Bypass:AddToggle("RemoveSkeletonDoor",  { Text = "Remove Skeleton Door",   Default = false, Tooltip = "Removes the skeleton door from the infirmary.",    Risky = Floor ~= "Fools" })
 
 local ObstructionNames = { ThingToOpen = "RemoveBasementGate", MovingDoor = "RemovePaintingsDoor", Wax_Door = "RemoveSkeletonDoor" }
 for ObjName, ToggleName in ObstructionNames do
@@ -3763,8 +3807,8 @@ end
 
 
 
-Groupboxes.Floors_Farming = Tabs.Floors:AddLeftGroupbox("Farming")
-Groupboxes.Floors_Farming:AddButton({
+Groupboxes.Legacy_Farming = Tabs.Legacy:AddLeftGroupbox("Farming")
+Groupboxes.Legacy_Farming:AddButton({
 	Text = "Start Death Farm",
 	DoubleClick = true,
 	Tooltip = "Automatically farms deaths, joining new runs.",
@@ -3775,7 +3819,7 @@ Groupboxes.Floors_Farming:AddButton({
 	Disabled = not Functions.CheckCompatability({"fireproximityprompt", "firesignal"}),
 	DisabledTooltip = Globals.ImcompatibleMessage
 })
-Groupboxes.Floors_Farming:AddButton({
+Groupboxes.Legacy_Farming:AddButton({
 	Text = "Copy Death Farm Loadstring",
 	DoubleClick = false,
 	Tooltip = "Copies the death farm loadstring to your clipboard.",
