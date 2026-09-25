@@ -3759,36 +3759,11 @@ for ObjName, ToggleName in ObstructionNames do
 	end)
 end
 
+
+
+
+
 Groupboxes.Floors_Farming = Tabs.Floors:AddLeftGroupbox("Farming")
-Groupboxes.Floors_Farming:AddToggle("KnobFarm", {
-    Text = "Knob Farm",
-    Default = false,
-    Tooltip = "Automatically gains knobs for you, dies and revives repeatedly.",
-	Risky = Floor ~= "Ballz",
-})
-
-Groupboxes.Floors_Farming:AddButton({
-    Text = "Start Knob Farm",
-    Tooltip = "Starts farming knobs, click this when you have enough gold.",
-    Func = function()
-		if LatestRoom.Value ~= 0 then
-			Functions.Notify({Title = "You must be in Room 0 to use this."})
-			return
-		end
-
-		if LocalPlayer.PlayerGui:FindFirstChild("TopbarUI") then 
-			local GoldCount = LocalPlayer.PlayerGui.TopbarUI.Topbar.StatsTopbarHandler.StatModules.Gold.GoldVal
-			if GoldCount.Value <= 0 then
-				Functions.Notify({Title = "You must have gold to do this."})
-				return
-			end
-		end
-
-        Globals.KnobFarmStarted = true
-    end
-})
-
-Groupboxes.Floors_Farming:AddDivider()
 Groupboxes.Floors_Farming:AddButton({
 	Text = "Start Death Farm",
 	DoubleClick = true,
@@ -3815,36 +3790,8 @@ Groupboxes.Floors_Farming:AddButton({
 	DisabledTooltip = Globals.ImcompatibleMessage
 })
 
-Toggles.KnobFarm:OnChanged(function(Value)
-    if Value then
-        Functions.Notify({Title = "Please collect some gold to earn knobs.", Body = "Click 'Start Knob Farm' when you're ready."})
-	else
-		Globals.KnobFarmStarted = false
-    end
-end)
 
-Globals.KnobFarmActive = false
-Globals.KnobFarmStarted = false
-Connections.KnobFarm = Services.RunService.Heartbeat:Connect(function()
-	if Toggles.KnobFarm.Value and Globals.KnobFarmStarted then
-		if not Globals.KnobFarmActive then
-			Globals.KnobFarmActive = true
-			if Functions.CheckCompatability({"replicatesignal"}) then
-				Abysall.Environment.replicatesignal(LocalPlayer.Kill)
-			else
-				LocalPlayer.Character.Humanoid.Health = 0
-			end
-			while task.wait() do
-				if LocalPlayer:GetAttribute("Alive") then
-					break
-				end
-			end
-			RemotesFolder.Statistics:FireServer()
-			task.wait(0.25)
-			Globals.KnobFarmActive = false
-		end
-	end
-end)
+
 
 local MainHook
 local OtherHook
@@ -4345,7 +4292,7 @@ Functions.HandleCharacter = function(NewCharacter)
 		end
 
 		if Globals.SelfKilled and Globals.MainUI:FindFirstChild("Statistics") then
-			Globals.MainUI.Statistics.Death.Text = "Died to Abysall Hub"
+			Globals.MainUI.Statistics.Death.Text = "Died to Abysall fork name"
 		end
 
 		local MainFrame = Globals.MainUI:FindFirstChild("MainFrame")

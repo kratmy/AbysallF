@@ -48,7 +48,7 @@ return function(Window)
 
 			if queue_on_teleport then
 				queue_on_teleport([[
-					loadstring(game:HttpGet("https://raw.githubusercontent.com/kratmy/AbysallF/main/Games/Doors/Main.luau"))()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/kratmy/AbysallF/main/Loader.luau"))()
 				]])
 			end
 		end,

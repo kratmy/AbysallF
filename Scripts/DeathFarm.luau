@@ -22,9 +22,9 @@ local GameData = Services.ReplicatedStorage:FindFirstChild("GameData")
 
 local function SendCaption(Text)
 	if firesignal then
-		firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall Hub] " .. Text)
+		firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall] " .. Text)
 	else
-		RemotesFolder.CaptionClient:Fire("[Abysall Hub] " .. Text)
+		RemotesFolder.CaptionClient:Fire("[Abysall] " .. Text)
 	end
 end
 
@@ -46,9 +46,9 @@ if GameData and GameData.Floor.Value ~= "Hotel" then
 		local RemotesFolder = game:GetService("ReplicatedStorage").RemotesFolder
 		local function SendCaption(Text)
 			if firesignal then
-				firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall Hub] " .. Text)
+				firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall] " .. Text)
 			else
-				RemotesFolder.CaptionClient:Fire("[Abysall Hub] " .. Text)
+				RemotesFolder.CaptionClient:Fire("[Abysall] " .. Text)
 			end
 		end
 
@@ -74,9 +74,9 @@ if game.PlaceId ~= 6839171747 then
 		local RemotesFolder = game:GetService("ReplicatedStorage").RemotesFolder
 		local function SendCaption(Text)
 			if firesignal then
-				firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall Hub] " .. Text)
+				firesignal(RemotesFolder.Caption.OnClientEvent, "[Abysall] " .. Text)
 			else
-				RemotesFolder.CaptionClient:Fire("[Abysall Hub] " .. Text)
+				RemotesFolder.CaptionClient:Fire("[Abysall] " .. Text)
 			end
 		end
 
