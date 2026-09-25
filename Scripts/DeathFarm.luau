@@ -3,7 +3,6 @@ while not game:IsLoaded() do
 end
 
 print("Abysall Hub death farm for DOORS, created by FireBacon (bocaj111004)")
-print("dsc.gg/abysallhub")
 
 local Services = setmetatable({}, {
 	__index = function(self, Key)

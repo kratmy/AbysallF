@@ -2607,7 +2607,6 @@ local InfCrucifixDropTable = {
 
 
 Toggles.InfCrucifix:OnChanged(function(Value)
-	print("i allive")
 	local InfCrucifixRaycastParams = RaycastParams.new()
 	InfCrucifixRaycastParams.FilterType = Enum.RaycastFilterType.Blacklist
 
@@ -2662,7 +2661,6 @@ Toggles.InfCrucifix:OnChanged(function(Value)
 			task.spawn(function()
 				ReplicatedStorage.RemotesFolder.DropItem:FireServer(InfCrucifixTool)
 				task.wait(0.54)
-				print("hi")
 				local InfCrucifixDrops = Workspace:FindFirstChild("Drops")
 				if not InfCrucifixDrops then
 					return
@@ -2678,7 +2676,6 @@ Toggles.InfCrucifix:OnChanged(function(Value)
 					fireproximityprompt(InfCrucifixPrompt)
 				end
 			end)
-			print ("hi")
 			task.wait(0.6)
 		end
 	end)

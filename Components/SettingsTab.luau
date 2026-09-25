@@ -70,11 +70,6 @@ return function(Window)
 	MenuGroup:AddDivider()
 	MenuGroup:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
 	
-	MenuGroup:AddButton("Copy Discord Invite", function()
-		toclipboard("https://dsc.gg/abysallhub")
-		Library:Notify("Discord invite copied.")
-	end)
-	
 	MenuGroup:AddButton("Unload", function()
 		Library:Unload()
 	end)
