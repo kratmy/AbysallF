@@ -63,7 +63,7 @@ function Library:GenerateRandomString()
 	local Pool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	local PoolLen = #Pool
 	for I = 1, 24 do
-		local Idx = math.random(1, PoolLen)
+		local Idx = math.random(1, PoolLen) 
 		Chars[I] = Pool:sub(Idx, Idx)
 	end
 	return table.concat(Chars)
