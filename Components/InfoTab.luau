@@ -93,4 +93,13 @@ return function(Window)
             loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
         end
     })
+
+	Scripts:AddButton("DarkDexV3", {
+        Text = "Bypassed DarkDexV3",
+        Default = false,
+        Tooltip = "Runs Bypassed DarkDexV3.",
+        Func = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/refs/heads/main/Universal/BypassedDarkDexV3.lua"))()
+        end
+    })
 end
