@@ -1723,12 +1723,13 @@ end)
 -- Archives
 
 Groupboxes.Archives_Misc = Tabs.Archives:AddRightGroupbox("Exploits / Anti")
-Groupboxes.Archives_Misc:AddToggle("AntiRansom", { Text = "Anti Ransom", Default = false, Tooltip = "Prevents 'Ransom' from attacking you." })
-Groupboxes.Archives_Misc:AddToggle("AntiClosetTrash", { Text = "Anti Closet Trash", Default = false, Tooltip = "Prevents 'Closet Trash' from spawning." })
-Groupboxes.Archives_Misc:AddToggle("ForgetMeNotSolver", { Text = "Forget Me Not Skipper", Default = false, Tooltip = "Automatically Skippes Forget Me Not doors." })
-Groupboxes.Archives_Misc:AddToggle("TimeShower", { Text = "Time Shower", Default = false, Tooltip = "Shows the Archives clock time." })
-Groupboxes.Archives_Misc:AddToggle("BypassDronesStampede",         { Text = "Stop Time/Anti Stampede",           Default = false, Tooltip = "Prevents 'The Drones Stampede' from attacking you." })
-Groupboxes.Archives_Misc:AddToggle("HonchoCorrectBoxESP", {Text = "Honcho Correct Box ESP", Default = false, Tooltip = "ESPs the Archives Correct Boxes." })
+Groupboxes.Archives_Misc:AddToggle("AntiRansom", { Text = "Anti Ransom", Default = false, Tooltip = "Prevents 'Ransom' from attacking you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("AntiClosetTrash", { Text = "Anti Closet Trash", Default = false, Tooltip = "Prevents 'Closet Trash' from spawning.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("ForgetMeNotSolver", { Text = "Forget Me Not Skipper", Default = false, Tooltip = "Automatically Skippes Forget Me Not doors.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("TimeShower", { Text = "Time Shower", Default = false, Tooltip = "Shows the Archives clock time.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("BypassDronesStampede",         { Text = "Stop Time/Anti Stampede",           Default = false, Tooltip = "Prevents 'The Drones Stampede' from attacking you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("HonchoCorrectBoxESP", {Text = "Honcho Correct Box ESP", Default = false, Tooltip = "ESPs the Archives Correct Boxes.", Risky = Floor ~= "Archives" })
+
 
 TimeShowerLabel = Instance.new("TextLabel")
 TimeShowerLabel.Name = "TimeShower"
@@ -1745,7 +1746,6 @@ TimeShowerLabel.TextXAlignment = Enum.TextXAlignment.Left
 TimeShowerLabel.Text = "Time: --:--"
 TimeShowerLabel.Visible = false
 TimeShowerLabel.Parent = Container
-
 
 
 
@@ -2000,7 +2000,7 @@ Groupboxes.Archives_Bypasses:AddToggle("BypassAlma", { Text = "Bypass Alma", Def
 Groupboxes.Archives_Bypasses:AddToggle("BypassDrones",         { Text = "Bypass Drones",           Default = false, Tooltip = "Prevents 'Drones' from attacking you." })
 Groupboxes.Archives_Bypasses:AddToggle("AntiScribbles", { Text = "Bypass Scribbles", Default = false, Tooltip = "Prevents 'Scribbles' from attacking you." })
 
-Groupboxes.Archives_Experimental = Tabs.Archives:AddLeftGroupbox("Experimental")
+--Groupboxes.Archives_Experimental = Tabs.Archives:AddLeftGroupbox("Experimental") -- empty
 
 
 Toggles.AntiClosetTrash:OnChanged(function(Value)
@@ -2457,7 +2457,7 @@ end)
 
 -- Stairwell
 
-Groupboxes.Stairwell_Misc = Tabs.Stairwell:AddLeftGroupbox("Exploits / Anti")
+--Groupboxes.Stairwell_Misc = Tabs.Stairwell:AddLeftGroupbox("Exploits / Anti") -- empty
 Groupboxes.Stairwell_Experimental = Tabs.Stairwell:AddLeftGroupbox("Experimental")
 Groupboxes.Stairwell_Experimental:AddButton({
     Text = "Bring Dropped Items",
@@ -3659,7 +3659,7 @@ Connections.RoomsHandler = CurrentRooms.ChildAdded:Connect(function(Room)
 	end
 end)
 
-Groupboxes.Mines_Completion = Tabs.Mines:AddRightGroupbox("Completion")
+Groupboxes.Mines_Completion = Tabs.Mines:AddLeftGroupbox("Completion")
 Groupboxes.Mines_Completion:AddButton({
     Text = "Auto Complete Dam Seek",
     Tooltip = "Automatically teleports to and interacts with each water pump.",
@@ -3759,7 +3759,7 @@ Toggles.ShowSeekPathToggle:OnChanged(function(V)  UpdateBeamVisibility(Objects.S
 Options.ShowSeekPathColor:OnChanged(function(V)   UpdateBeamColor(Objects.SeekHighlights, V) end)
 
 
-Groupboxes.Garden_Visuals = Tabs.Mines:AddRightGroupbox("Completion")
+Groupboxes.Garden_Visuals = Tabs.Garden:AddRightGroupbox("Completion")
 Groupboxes.Garden_Visuals:AddToggle("ShowEyestalkPathToggle", {
 	Text = "Show Eyestalk Path", Default = false, Tooltip = "Shows you the correct path in the eyestalk chase.",
 	Risky = Floor ~= "Garden"

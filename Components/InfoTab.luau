@@ -9,6 +9,8 @@ return function(Window)
         -- Yellow = Sum shi
 		"<font color='rgb(255, 255, 0)'>~ Updated Default Themes</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Queue On Teleport</font>",
+        "<font color='rgb(255, 255, 0)'>~ Fixed Empty Tabs Cuz Im Stupid</font>",
+        "<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
 
         -- Red = Removed
         "<font color='rgb(255, 0, 0)'>- Removed Knob Farm :(</font>",
