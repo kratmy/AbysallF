@@ -485,7 +485,7 @@ end)
 
 RunTest("getcustomasset", function()
 	assert(Environment.writefile, "writefile is required to test")
-	local Content = game:HttpGet("https://raw.githubusercontent.com/bocaj111004/Abysall/refs/heads/main/Assets/Check.png")
+	local Content = game:HttpGet("https://raw.githubusercontent.com/kratmy/AbysallF/refs/heads/main/Assets/Check.png")
 	Global.writefile("Abysall_Test_Image", Content)
 	local Asset = Global.getcustomasset("Abysall_Test_Image")
 	local TestImage = Instance.new("ImageLabel", Services.CoreGui.RobloxGui)
