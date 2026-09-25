@@ -19,6 +19,7 @@ return function(Window)
         "<font color='rgb(255, 0, 0)'>- Removed Knob Farm :(</font>",
         "<font color='rgb(255, 0, 0)'>- Removed Discord Links</font>",
         "<font color='rgb(255, 0, 0)'>- Removed Abysall Hub Names</font>",
+        "<font color='rgb(255, 0, 0)'>- Removed FOV KeyBind</font>",
     }
     local function CloneReference(Object)
         if Abysall and Abysall.Environment.cloneref then
