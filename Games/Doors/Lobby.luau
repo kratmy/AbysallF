@@ -257,6 +257,8 @@ Globals.CodesList = {
 	"PATHSWAP",
 	"JUMP OVER THE BRICK"
 }
+
+
 Globals.UnlockedBadges = {}
 
 Groupboxes.General_Self = Tabs.General:AddLeftGroupbox("Self")
@@ -571,6 +573,12 @@ Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
 	Rounding = 2,
 	Compact = true,
 })
+
+Groupboxes.Visuals_Audio:AddButton("Reset Volume To Default", function()
+	Options.GlassVolume:SetValue(Options.GlassVolume.Default)
+	Options.RegionVolume:SetValue(Options.RegionVolume.Default)
+	updateRainVolume()
+)
 
 local function updateRainVolume()
     if not Toggles.DisableRain.Value then

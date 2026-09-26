@@ -7,6 +7,7 @@ return function(Window)
         "<font color='rgb(0, 255, 0)'>+ Added Tabs Sort</font>",
         "<font color='rgb(0, 255, 0)'>+ Added Disable Rain In Doors Lobby</font>",
         "<font color='rgb(0, 255, 0)'>+ Added Visuals In Doors Lobby</font>",
+        "<font color='rgb(0, 255, 0)'>+ Added Reset Volume Button</font>",
         "<font color='rgb(0, 255, 0)'>+ Enabled Custom Cursor In Doors Lobby</font>",
 
         -- Yellow = Sum shi
