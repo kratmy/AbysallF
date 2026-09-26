@@ -29,14 +29,6 @@ return function(Window)
 		"<font color='rgb(255, 0, 0)'>- Removed FOV KeyBind</font>",
 	}
 
-
-    local CreditsList = {
-		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
-		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
-		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
-		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
-		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
-	}
 	
 	local function CloneReference(Object)
 		if Abysall and Abysall.Environment.cloneref then
@@ -76,7 +68,15 @@ return function(Window)
 	User:AddLabel("ID: " .. LocalPlayer.Name, true)
 	User:AddLabel("Total Executions: " .. (Abysall.TotalExecutions and Abysall.TotalExecutions or "N/A"), true)
 
-
+	
+    local CreditsList = {
+		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
+		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
+		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
+		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
+		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
+	}
+	
 
     local Changelog = InfoTab:AddRightGroupbox("Changelog")
 	for Index, Change in pairs(LatestChangelog) do
