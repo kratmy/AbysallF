@@ -61,8 +61,7 @@ return function(Window)
     User:AddLabel("Total Executions: " .. (Abysall.TotalExecutions and Abysall.TotalExecutions or "N/A"), true)
 
 	local CreditsList = {
-        "<font color='rgb(136, 12, 173)'>Kratmy — Owner of this aah fork</font>",
-		"<font color='rgb(0, 255, 255)'>CookieMonster — Owner of the Continued Script</font>",
+        "<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
 		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
 		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
 		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
