@@ -1,7 +1,7 @@
 local LoadStart = tick()
 
 if shared.Hastelepasta then
-    return 
+	return 
 end
 
 shared.Hastelepasta = true
@@ -10,69 +10,69 @@ shared.Hastelepasta = true
 
 
 getgenv().Abysall = {
-    Legit = true
+	Legit = true
 }
 
 local BaseUrl = "https://raw.githubusercontent.com/kratmy/AbysallF/main/"
 
 getgenv().Abysall = {
-    Environment = loadstring(game:HttpGet(BaseUrl .. "Components/Environment.luau"))(),
-    ESPLibrary = loadstring(game:HttpGet(BaseUrl .. "Components/ESP.luau"))(),
-    Legit = true
+	Environment = loadstring(game:HttpGet(BaseUrl .. "Components/Environment.luau"))(),
+	ESPLibrary = loadstring(game:HttpGet(BaseUrl .. "Components/ESP.luau"))(),
+	Legit = true
 }
 
 local Abysall = getgenv().Abysall
 
 local function CloneReference(Object)
-    if Abysall and Abysall.Environment.cloneref then
-        return Abysall.Environment.cloneref(Object)
-    end
-    return Object
+	if Abysall and Abysall.Environment.cloneref then
+		return Abysall.Environment.cloneref(Object)
+	end
+	return Object
 end
 
 local Services = setmetatable({}, {
-    __index = function(Self, Name)
-        return CloneReference(game:GetService(Name))
-    end
+	__index = function(Self, Name)
+		return CloneReference(game:GetService(Name))
+	end
 })
 
 if Abysall.Environment.writefile and Abysall.Environment.readfile then
-    if not Abysall.Environment.isfile("Abysall/UserData.json") then
-        local Data = {
-            TotalExecutions = 0,
-            UILibrary = "Obsidian"
-        }
+	if not Abysall.Environment.isfile("Abysall/UserData.json") then
+		local Data = {
+			TotalExecutions = 0,
+			UILibrary = "Obsidian"
+		}
 
-        Abysall.Environment.writefile(
-            "Abysall/UserData.json",
-            Services.HttpService:JSONEncode(Data)
-        )
-    end
+		Abysall.Environment.writefile(
+			"Abysall/UserData.json",
+			Services.HttpService:JSONEncode(Data)
+		)
+	end
 
-    local UserData = Abysall.Environment.readfile("Abysall/UserData.json")
-    local Decoded = Services.HttpService:JSONDecode(UserData)
+	local UserData = Abysall.Environment.readfile("Abysall/UserData.json")
+	local Decoded = Services.HttpService:JSONDecode(UserData)
 
-    if not Decoded.TotalExecutions then
-        Decoded.TotalExecutions = 0
-    end
+	if not Decoded.TotalExecutions then
+		Decoded.TotalExecutions = 0
+	end
 
-    Decoded.TotalExecutions = Decoded.TotalExecutions + 1
+	Decoded.TotalExecutions = Decoded.TotalExecutions + 1
 
-    if not Decoded.UILibrary then
-        Decoded.UILibrary = "Obsidian"
-    end
+	if not Decoded.UILibrary then
+		Decoded.UILibrary = "Obsidian"
+	end
 
-    Abysall.TotalExecutions = Decoded.TotalExecutions
-    Abysall.UILibrary = Decoded.UILibrary
+	Abysall.TotalExecutions = Decoded.TotalExecutions
+	Abysall.UILibrary = Decoded.UILibrary
 
-    Abysall.Environment.writefile(
-        "Abysall/UserData.json",
-        Services.HttpService:JSONEncode(Decoded)
-    )
+	Abysall.Environment.writefile(
+		"Abysall/UserData.json",
+		Services.HttpService:JSONEncode(Decoded)
+	)
 end
 
 Abysall.Interface = loadstring(game:HttpGet(
-    BaseUrl .. "Components/Interface.luau"
+	BaseUrl .. "Components/Interface.luau"
 ))()
 
 
@@ -175,7 +175,7 @@ end
 
 local Entities = {
 	["StemsEntity"] = {
-	    Alias = 'Balls',
+		Alias = 'Balls',
 		NotifyMessage = { Title = "Balls", Body = "Balls."}
 	},
 	["NoiseModel"] = {
@@ -273,109 +273,109 @@ local Entities = {
 }
 
 local EntityIcons = {
-	["RushMoving"]      = "rbxassetid://10716032262",
-	["AmbushMoving"]    = "rbxassetid://10110576663",
-	["A60"]             = "rbxassetid://12571092295",
-	["A120"]            = "rbxassetid://12711591665",
-	["BackdoorRush"]    = "rbxassetid://16602023490",
-	["Eyes"]            = "rbxassetid://10183704772",
-	["Lookman"]         = "rbxassetid://10183704772",
+	["RushMoving"]	  = "rbxassetid://10716032262",
+	["AmbushMoving"]	= "rbxassetid://10110576663",
+	["A60"]			 = "rbxassetid://12571092295",
+	["A120"]			= "rbxassetid://12711591665",
+	["BackdoorRush"]	= "rbxassetid://16602023490",
+	["Eyes"]			= "rbxassetid://10183704772",
+	["Lookman"]		 = "rbxassetid://10183704772",
 	["BackdoorLookman"] = "rbxassetid://16764872677",
 	["GloombatSwarm"]   = "rbxassetid://79221203116470",
-	["Halt"]            = "rbxassetid://11331795398",
+	["Halt"]			= "rbxassetid://11331795398",
 	["JeffTheKiller"]   = "rbxassetid://94479432156278",
-	["GlitchRush"]      = "rbxassetid://73859273102919",
-	["GlitchAmbush"]    = "rbxassetid://88369678433359",
-	["SallyMoving"]     = "rbxassetid://10840888070",
+	["GlitchRush"]	  = "rbxassetid://73859273102919",
+	["GlitchAmbush"]	= "rbxassetid://88369678433359",
+	["SallyMoving"]	 = "rbxassetid://10840888070",
 	["MonumentEntity"]  = "rbxassetid://88933556873017",
 	["Groundskeeper"]   = "rbxassetid://114991380115557"
 }
 
 local ItemNames = {
-	["DinkyLamp"]         = "Lamp",
-	["BottleCrate"]       = "18+ Bottles",
-	["GweenSodaPack"]     = "Gween Soda Pack",
-	["BrokenMonitor"]     = "Broken Monitor",
-	["JerryCan"]          = "Jerry Can",
- 	["SallyToyObtain"]    = "Sally Toy",
-	["Leftovers"]         = "Lunch Box",
-	["HoneyPot"]          = "Honey Pot",
-	["FihFlakes"]         = "Fih Food",
-	["SecretCD"]          = "CD Disc",
-	["Pizza"]             = "Pizza",
+	["DinkyLamp"]		 = "Lamp",
+	["BottleCrate"]	   = "18+ Bottles",
+	["GweenSodaPack"]	 = "Gween Soda Pack",
+	["BrokenMonitor"]	 = "Broken Monitor",
+	["JerryCan"]		  = "Jerry Can",
+ 	["SallyToyObtain"]	= "Sally Toy",
+	["Leftovers"]		 = "Lunch Box",
+	["HoneyPot"]		  = "Honey Pot",
+	["FihFlakes"]		 = "Fih Food",
+	["SecretCD"]		  = "CD Disc",
+	["Pizza"]			 = "Pizza",
 	["PaperPlanePickup"]  = "Paper Plane",
-	["Lighter"]           = "Lighter",
-	["Flashlight"]        = "Flashlight",
-	["Lockpick"]          = "Lockpicks",
-	["Vitamins"]          = "Vitamins",
-	["Bandage"]           = "Bandage",
-	["StarVial"]          = "Starlight Vial",
-	["StarBottle"]        = "Starlight Bottle",
-	["StarJug"]           = "Starlight Barrel",
-	["Shakelight"]        = "Gummy Flashlight",
-	["Straplight"]        = "Straplight",
-	["Bulklight"]         = "Spotlight",
-	["Battery"]           = "Battery",
-	["Candle"]            = "Candle",
-	["Crucifix"]          = "Crucifix",
-	["CrucifixWall"]      = "Crucifix",
-	["Glowsticks"]        = "Glowstick",
-	["SkeletonKey"]       = "Skeleton Key",
-	["Candy"]             = "Candy",
-	["ShieldMini"]        = "Mini Shield Potion",
-	["ShieldBig"]         = "Big Shield Potion",
-	["BandagePack"]       = "Bandage Pack",
-	["BatteryPack"]       = "Battery Pack",
-	["RiftCandle"]        = "Moonlight Candle",
-	["LaserPointer"]      = "Laser Pointer",
-	["HolyGrenade"]       = "Holy Hand Grenade",
-	["Shears"]            = "Shears",
-	["Smoothie"]          = "Smoothie",
-	["Cheese"]            = "Cheese",
-	["Bread"]             = "Bread",
-	["AlarmClock"]        = "Alarm Clock",
-	["RiftSmoothie"]      = "Moonlight Smoothie",
-	["GweenSoda"]         = "Gween Soda",
-	["GlitchCube"]        = "Glitch Fragment",
-	["Scanner"]           = "Tablet",
-	["Bomb"]              = "Bomb",
-	["Knockbomb"]         = "Knockbomb",
-	["Nanner"]            = "Nanner",
-	["BigBomb"]           = "Big Bomb",
-	["SnakeBox"]          = "Hiding Box",
-	["GoldGun"]           = "Golden Gun",
-	["StopSign"]          = "Stop Sign",
-	["TipJar"]            = "Tip Jar",
-	["Lantern"]           = "Lantern",
-	["IronKey"]           = "Iron Key",
-	["LotusPetal"]        = "Lotus Petal",
-	["Compass"]           = "Compass",
+	["Lighter"]		   = "Lighter",
+	["Flashlight"]		= "Flashlight",
+	["Lockpick"]		  = "Lockpicks",
+	["Vitamins"]		  = "Vitamins",
+	["Bandage"]		   = "Bandage",
+	["StarVial"]		  = "Starlight Vial",
+	["StarBottle"]		= "Starlight Bottle",
+	["StarJug"]		   = "Starlight Barrel",
+	["Shakelight"]		= "Gummy Flashlight",
+	["Straplight"]		= "Straplight",
+	["Bulklight"]		 = "Spotlight",
+	["Battery"]		   = "Battery",
+	["Candle"]			= "Candle",
+	["Crucifix"]		  = "Crucifix",
+	["CrucifixWall"]	  = "Crucifix",
+	["Glowsticks"]		= "Glowstick",
+	["SkeletonKey"]	   = "Skeleton Key",
+	["Candy"]			 = "Candy",
+	["ShieldMini"]		= "Mini Shield Potion",
+	["ShieldBig"]		 = "Big Shield Potion",
+	["BandagePack"]	   = "Bandage Pack",
+	["BatteryPack"]	   = "Battery Pack",
+	["RiftCandle"]		= "Moonlight Candle",
+	["LaserPointer"]	  = "Laser Pointer",
+	["HolyGrenade"]	   = "Holy Hand Grenade",
+	["Shears"]			= "Shears",
+	["Smoothie"]		  = "Smoothie",
+	["Cheese"]			= "Cheese",
+	["Bread"]			 = "Bread",
+	["AlarmClock"]		= "Alarm Clock",
+	["RiftSmoothie"]	  = "Moonlight Smoothie",
+	["GweenSoda"]		 = "Gween Soda",
+	["GlitchCube"]		= "Glitch Fragment",
+	["Scanner"]		   = "Tablet",
+	["Bomb"]			  = "Bomb",
+	["Knockbomb"]		 = "Knockbomb",
+	["Nanner"]			= "Nanner",
+	["BigBomb"]		   = "Big Bomb",
+	["SnakeBox"]		  = "Hiding Box",
+	["GoldGun"]		   = "Golden Gun",
+	["StopSign"]		  = "Stop Sign",
+	["TipJar"]			= "Tip Jar",
+	["Lantern"]		   = "Lantern",
+	["IronKey"]		   = "Iron Key",
+	["LotusPetal"]		= "Lotus Petal",
+	["Compass"]		   = "Compass",
 	["LotusPetalPickup"]  = "Lotus Petal",
-	["LanternLitItem"]    = "Lantern",
-	["KeyIron"]           = "Iron Key",
+	["LanternLitItem"]	= "Lantern",
+	["KeyIron"]		   = "Iron Key",
 	["IronKeyForCrypt"]   = "Iron Key",
-	["LotusHolder"]       = "Lotus Petal",
-	["Multitool"]         = "Multitool",
-	["RiftJar"]           = "Rift Jar",
-	["AloeVera"]          = "Aloe Vera",
-	["Donut"]             = "Donut",
-	["Lotus"]             = "Lotus",
-	["BoxingGloves"]      = "Boxing Gloves"
+	["LotusHolder"]	   = "Lotus Petal",
+	["Multitool"]		 = "Multitool",
+	["RiftJar"]		   = "Rift Jar",
+	["AloeVera"]		  = "Aloe Vera",
+	["Donut"]			 = "Donut",
+	["Lotus"]			 = "Lotus",
+	["BoxingGloves"]	  = "Boxing Gloves"
 }
 
 local CutsceneNames = {
-    "Figure",
-    "FigureEnd",
-    "FigureHotelEnd",
-    "FigureHotelFire",
-    "SeekIntroFools",
-    "SeekIntroHotel",
-    "SeekIntroMines",
-    "SeekIntroMines2",
-    "SerewSeekDrain",
-    "SewerSeekLower",
-    "GrumbleNestEnd",
-    "EyestalkIntro",
+	"Figure",
+	"FigureEnd",
+	"FigureHotelEnd",
+	"FigureHotelFire",
+	"SeekIntroFools",
+	"SeekIntroHotel",
+	"SeekIntroMines",
+	"SeekIntroMines2",
+	"SerewSeekDrain",
+	"SewerSeekLower",
+	"GrumbleNestEnd",
+	"EyestalkIntro",
 }
 
 local Character
@@ -393,11 +393,11 @@ local LocalPlayer = Services.Players.LocalPlayer
 local RemotesFolder   = Services.ReplicatedStorage:FindFirstChild("RemotesFolder")
 local LiveModifiers   = Services.ReplicatedStorage:FindFirstChild("LiveModifiers")
 local FloorReplicated = Services.ReplicatedStorage:FindFirstChild("FloorReplicated")
-local CurrentRooms    = Services.Workspace:FindFirstChild("CurrentRooms")
-local Drops           = Services.Workspace:FindFirstChild("Drops")
-local GameData        = Services.ReplicatedStorage:WaitForChild("GameData")
-local Floor           = GameData:WaitForChild("Floor").Value
-local LatestRoom      = GameData:WaitForChild("LatestRoom")
+local CurrentRooms	= Services.Workspace:FindFirstChild("CurrentRooms")
+local Drops		   = Services.Workspace:FindFirstChild("Drops")
+local GameData		= Services.ReplicatedStorage:WaitForChild("GameData")
+local Floor		   = GameData:WaitForChild("Floor").Value
+local LatestRoom	  = GameData:WaitForChild("LatestRoom")
 local FinishedLoadingRoom = GameData:FindFirstChild("FinishedLoadingRoom")
 local RunService = game:GetService("RunService")
 
@@ -768,26 +768,26 @@ end
 local FakeEvents = {
 	Screech = Instance.new("RemoteEvent"),
 	Shade   = Instance.new("RemoteEvent"),
-	A90     = Instance.new("RemoteEvent"),
+	A90	 = Instance.new("RemoteEvent"),
 	Surge   = Instance.new("RemoteEvent"),
 }
 
 FakeEvents.Screech.Name  = "Screech"
-FakeEvents.Shade.Name    = "ShadeResult"
-FakeEvents.A90.Name      = "A90"
-FakeEvents.Surge.Name    = "SurgeRemote"
+FakeEvents.Shade.Name	= "ShadeResult"
+FakeEvents.A90.Name	  = "A90"
+FakeEvents.Surge.Name	= "SurgeRemote"
 
 FakeEvents.Screech_Real = RemotesFolder:WaitForChild("Screech")
 FakeEvents.Shade_Real   = RemotesFolder:WaitForChild("ShadeResult")
-FakeEvents.A90_Real     = RemotesFolder:FindFirstChild("A90")
+FakeEvents.A90_Real	 = RemotesFolder:FindFirstChild("A90")
 FakeEvents.Surge_Real   = RemotesFolder:FindFirstChild("SurgeRemote")
 
 if RemotesFolder:FindFirstChild("FootstepRemoteThatWeNeed") then
-    local RealRemote = RemotesFolder:FindFirstChild("FootstepRemoteThatWeNeed")
-    RealRemote:Destroy()
+	local RealRemote = RemotesFolder:FindFirstChild("FootstepRemoteThatWeNeed")
+	RealRemote:Destroy()
 
-    local FakeRemote = Instance.new("RemoteEvent", RemotesFolder)
-    FakeRemote.Name = "FootstepRemoteThatWeNeed"
+	local FakeRemote = Instance.new("RemoteEvent", RemotesFolder)
+	FakeRemote.Name = "FootstepRemoteThatWeNeed"
 end
 
 Globals.FogInstances = {}
@@ -905,14 +905,14 @@ Functions.GetPlayerFromMouse = function(TargetPart, MaxDistance)
 end
 
 local EntityDistances = {
-	["RushMoving"]    = 85,
+	["RushMoving"]	= 85,
 	["Scribbles"]	  = 100,
-	["BashMoving"]    = 150,
+	["BashMoving"]	= 150,
 	["DronesStampede"] = 100,
 	["AmbushMoving"]  = 150,
-	["A60"]           = 125,
-	["A120"]          = 85,
-	["GlitchRush"]    = 90,
+	["A60"]		   = 125,
+	["A120"]		  = 85,
+	["GlitchRush"]	= 90,
 	["GlitchAmbush"]  = 175,
 	["BackdoorRush"]  = 85,
 	["CustomEntity"]  = 85,
@@ -1187,22 +1187,22 @@ end
 
 Globals.UsedRandomCodes = {}
 Functions.GetRandomCode = function()
-    local CodeTemplate = Functions.GetLibraryCode()
-    if not CodeTemplate then
-        return nil
-    end
+	local CodeTemplate = Functions.GetLibraryCode()
+	if not CodeTemplate then
+		return nil
+	end
 
-    local NewCode
-    local Tries = 0
-    repeat
-        NewCode = CodeTemplate:gsub("_", function()
-            return tostring(math.random(0, 9))
-        end)
-        Tries = Tries + 1
-    until not Globals.UsedRandomCodes[NewCode] or Tries >= 10
+	local NewCode
+	local Tries = 0
+	repeat
+		NewCode = CodeTemplate:gsub("_", function()
+			return tostring(math.random(0, 9))
+		end)
+		Tries = Tries + 1
+	until not Globals.UsedRandomCodes[NewCode] or Tries >= 10
 
-    Globals.UsedRandomCodes[NewCode] = true
-    return NewCode
+	Globals.UsedRandomCodes[NewCode] = true
+	return NewCode
 end
 
 local Window = Library:CreateWindow({
@@ -1230,18 +1230,18 @@ local Window = Library:CreateWindow({
 Abysall.Interface.ApplyInfoTab(Window)
 
 local Tabs = {
-    General   = Window:AddTab("General", "house"),
-    Exploits  = Window:AddTab("Exploits", "shield"),
-    Visuals   = Window:AddTab("Visuals", "eye"),
+	General   = Window:AddTab("General", "house"),
+	Exploits  = Window:AddTab("Exploits", "shield"),
+	Visuals   = Window:AddTab("Visuals", "eye"),
 	
-    Hotel     = Window:AddTab("The Hotel", "door-open"),
-    Mines     = Window:AddTab("The Mines", "pickaxe"),
+	Hotel	 = Window:AddTab("The Hotel", "door-open"),
+	Mines	 = Window:AddTab("The Mines", "pickaxe"),
 
-    Legacy    = Window:AddTab("Legacy", "archive"),
+	Legacy	= Window:AddTab("Legacy", "archive"),
 
-    Garden    = Window:AddTab("The Outdoors", "trees"), 
-    Archives  = Window:AddTab("Archives", "rbxassetid://104508835882225"),
-    Stairwell = Window:AddTab("Stairwell", "rbxassetid://80017304328364"),
+	Garden	= Window:AddTab("The Outdoors", "trees"), 
+	Archives  = Window:AddTab("Archives", "rbxassetid://104508835882225"),
+	Stairwell = Window:AddTab("Stairwell", "rbxassetid://80017304328364"),
 }
 
 Groupboxes.General_Character = Tabs.General:AddLeftGroupbox("Character")
@@ -1405,10 +1405,10 @@ Groupboxes.Self_Automation:AddToggle("AutoInteractToggle", {
 	Text = "Auto Interact", Default = false, Tooltip = "Automatically triggers nearby prompts."
 })
 Toggles.AutoInteractToggle:AddKeyPicker("AutoInteractKeybind", {
-    Text = "Auto Interact",
-    Default = "R",
-    Mode = "Toggle",
-    SyncToggleState = true
+	Text = "Auto Interact",
+	Default = "R",
+	Mode = "Toggle",
+	SyncToggleState = true
 })
 Groupboxes.Self_Automation:AddDropdown("AutoInteractIgnoreList", {
 	Text = "Ignore List",
@@ -1571,18 +1571,18 @@ end)
 
 Groupboxes.Exploits_Bypass = Tabs.Exploits:AddLeftGroupbox("Bypass / Solve")
 
-Groupboxes.Exploits_Bypass:AddToggle("BypassGiggle",           { Text = "Bypass Giggle",            Default = false, Tooltip = "Prevents 'Giggle' from attacking you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassDupe",             { Text = "Bypass Dupe",              Default = false, Tooltip = "Prevents you from open 'Dupe' fake doors." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassEyes",             { Text = "Bypass Eyes",              Default = false, Tooltip = "Prevents 'Eyes' from hurting you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassLookman",          { Text = "Bypass Lookman",           Default = false, Tooltip = "Prevents 'Lookman' from hurting you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassGloombatEggs",     { Text = "Bypass Gloombat Eggs",     Default = false, Tooltip = "Prevents taking damage from stepping on 'Gloombat' eggs." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassGiggle",		   { Text = "Bypass Giggle",			Default = false, Tooltip = "Prevents 'Giggle' from attacking you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassDupe",			 { Text = "Bypass Dupe",			  Default = false, Tooltip = "Prevents you from open 'Dupe' fake doors." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassEyes",			 { Text = "Bypass Eyes",			  Default = false, Tooltip = "Prevents 'Eyes' from hurting you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassLookman",		  { Text = "Bypass Lookman",		   Default = false, Tooltip = "Prevents 'Lookman' from hurting you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassGloombatEggs",	 { Text = "Bypass Gloombat Eggs",	 Default = false, Tooltip = "Prevents taking damage from stepping on 'Gloombat' eggs." })
 Groupboxes.Exploits_Bypass:AddToggle("BypassSeekObstructions", { Text = "Bypass Seek Obstructions", Default = false, Tooltip = "Prevents obstacles in the 'Seek' chase from harming you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassVacuum",           { Text = "Bypass Vacuum",            Default = false, Tooltip = "Prevents you from falling into 'Vacuum' fake doors." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassKillbricks",       { Text = "Bypass Killbricks",        Default = false, Tooltip = "Prevents 'Lava' from hurting you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassSeekingWall",      { Text = "Bypass Seeking Wall",      Default = false, Tooltip = "Prevents 'ScaryWall' from hurting you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassSnare",            { Text = "Bypass Snare",             Default = false, Tooltip = "Prevents 'Snare' from trapping you." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassBanana",           { Text = "Bypass Banana",            Default = false, Tooltip = "Prevents 'Banana Peel' from slipping you up (sometimes doesn't work)." })
-Groupboxes.Exploits_Bypass:AddToggle("BypassJeff",             { Text = "Bypass Jeff",              Default = false, Tooltip = "Prevents 'Jeff the Killer' from stabbing you (sometimes doesn't work)." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassVacuum",		   { Text = "Bypass Vacuum",			Default = false, Tooltip = "Prevents you from falling into 'Vacuum' fake doors." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassKillbricks",	   { Text = "Bypass Killbricks",		Default = false, Tooltip = "Prevents 'Lava' from hurting you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassSeekingWall",	  { Text = "Bypass Seeking Wall",	  Default = false, Tooltip = "Prevents 'ScaryWall' from hurting you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassSnare",			{ Text = "Bypass Snare",			 Default = false, Tooltip = "Prevents 'Snare' from trapping you." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassBanana",		   { Text = "Bypass Banana",			Default = false, Tooltip = "Prevents 'Banana Peel' from slipping you up (sometimes doesn't work)." })
+Groupboxes.Exploits_Bypass:AddToggle("BypassJeff",			 { Text = "Bypass Jeff",			  Default = false, Tooltip = "Prevents 'Jeff the Killer' from stabbing you (sometimes doesn't work)." })
 
 
 Toggles.BypassGiggle:OnChanged(function(Value)
@@ -1707,7 +1707,7 @@ Groupboxes.Archives_Misc:AddToggle("AntiRansom", { Text = "Anti Ransom", Default
 Groupboxes.Archives_Misc:AddToggle("AntiClosetTrash", { Text = "Anti Closet Trash", Default = false, Tooltip = "Prevents 'Closet Trash' from spawning.", Risky = Floor ~= "Archives" })
 Groupboxes.Archives_Misc:AddToggle("ForgetMeNotSolver", { Text = "Forget Me Not Skipper", Default = false, Tooltip = "Automatically Skippes Forget Me Not doors.", Risky = Floor ~= "Archives" })
 Groupboxes.Archives_Misc:AddToggle("TimeShower", { Text = "Time Shower", Default = false, Tooltip = "Shows the Archives clock time.", Risky = Floor ~= "Archives" })
-Groupboxes.Archives_Misc:AddToggle("BypassDronesStampede",         { Text = "Stop Time/Anti Stampede",           Default = false, Tooltip = "Prevents 'The Drones Stampede' from attacking you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Misc:AddToggle("BypassDronesStampede",		 { Text = "Stop Time/Anti Stampede",		   Default = false, Tooltip = "Prevents 'The Drones Stampede' from attacking you.", Risky = Floor ~= "Archives" })
 Groupboxes.Archives_Misc:AddToggle("HonchoCorrectBoxESP", {Text = "Honcho Correct Box ESP", Default = false, Tooltip = "ESPs the Archives Correct Boxes.", Risky = Floor ~= "Archives" })
 
 
@@ -1977,7 +1977,7 @@ end)
 Groupboxes.Archives_Bypasses = Tabs.Archives:AddLeftGroupbox("Bypasses")
 Groupboxes.Archives_Bypasses:AddToggle("BypassWater", { Text = "Bypass Electric Water", Default = false, Tooltip = "Prevents electric water from hurting you.", Risky = Floor ~= "Archives" })
 Groupboxes.Archives_Bypasses:AddToggle("BypassAlma", { Text = "Bypass Alma", Default = false, Tooltip = "Prevents 'Alma' from spawning.", Risky = Floor ~= "Archives" })
-Groupboxes.Archives_Bypasses:AddToggle("BypassDrones",         { Text = "Bypass Drones",           Default = false, Tooltip = "Prevents 'Drones' from attacking you.", Risky = Floor ~= "Archives" })
+Groupboxes.Archives_Bypasses:AddToggle("BypassDrones",		 { Text = "Bypass Drones",		   Default = false, Tooltip = "Prevents 'Drones' from attacking you.", Risky = Floor ~= "Archives" })
 Groupboxes.Archives_Bypasses:AddToggle("AntiScribbles", { Text = "Bypass Scribbles", Default = false, Tooltip = "Prevents 'Scribbles' from attacking you.", Risky = Floor ~= "Archives" })
 
 --Groupboxes.Archives_Experimental = Tabs.Archives:AddLeftGroupbox("Experimental") -- Empty
@@ -2440,29 +2440,29 @@ end)
 --Groupboxes.Stairwell_Misc = Tabs.Stairwell:AddLeftGroupbox("Exploits / Anti") -- Empty
 Groupboxes.Stairwell_Experimental = Tabs.Stairwell:AddLeftGroupbox("Experimental")
 Groupboxes.Stairwell_Experimental:AddButton({
-    Text = "Bring Dropped Items",
-    Func = function()
-        local workspaceDropsFolder = workspace:FindFirstChild("Drops")
+	Text = "Bring Dropped Items",
+	Func = function()
+		local workspaceDropsFolder = workspace:FindFirstChild("Drops")
 
-        if LocalPlayer and LocalPlayer.Character then
-            local playerHumanoidRootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            
-            if playerHumanoidRootPart then
-                if workspaceDropsFolder then
-                    for _, itemToBring in ipairs(workspaceDropsFolder:GetChildren()) do
-                        if itemToBring:IsA("Model") then
-                            itemToBring:PivotTo(playerHumanoidRootPart.CFrame)
-                        elseif itemToBring:IsA("BasePart") then
-                            itemToBring.CFrame = playerHumanoidRootPart.CFrame
-                        end
-                    end
-                end
-            end
-        end
-    end,
-    DoubleClick = false,
+		if LocalPlayer and LocalPlayer.Character then
+			local playerHumanoidRootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+			
+			if playerHumanoidRootPart then
+				if workspaceDropsFolder then
+					for _, itemToBring in ipairs(workspaceDropsFolder:GetChildren()) do
+						if itemToBring:IsA("Model") then
+							itemToBring:PivotTo(playerHumanoidRootPart.CFrame)
+						elseif itemToBring:IsA("BasePart") then
+							itemToBring.CFrame = playerHumanoidRootPart.CFrame
+						end
+					end
+				end
+			end
+		end
+	end,
+	DoubleClick = false,
 	Risky = Floor ~= "Stairwell",
-    Tooltip = "Brings all dropped items."
+	Tooltip = "Brings all dropped items."
 })
 
 Groupboxes.Stairwell_Experimental:AddToggle("AntiNoise", { Text = "Anti Noise", Default = false, Risky = Floor ~= "Stairwell", Tooltip = "Prevents the game from making noise when moving (Visual studio auto ai lmfao ✌)." })
@@ -2584,10 +2584,10 @@ Groupboxes.Exploits_BypassRight:AddToggle("InfCrucifix", {
 local InfCrucifixDropTable = {
 	RushMoving   = 54,
 	AmbushMoving = 67,
-	A60          = 70,
+	A60		  = 70,
 	GlitchRush   = 120,
 	GlitchAmbush = 155,
-	A120         = 75,
+	A120		 = 75,
 
 }
 
@@ -2700,14 +2700,14 @@ end)
 
 Groupboxes.Exploits_Remove = Tabs.Exploits:AddRightGroupbox("Remove")
 Groupboxes.Exploits_Remove:AddToggle("RemoveScreech", { Text = "Remove Screech",  Default = false, Tooltip = "Prevents 'Screech' from spawning." })
-Groupboxes.Exploits_Remove:AddToggle("RemoveHalt",    { Text = "Remove Halt",     Default = false, Tooltip = "Prevents 'Halt' from spawning." })
-Groupboxes.Exploits_Remove:AddToggle("RemoveA90",     { Text = "Remove A-90",     Default = false, Tooltip = "Prevents 'A-90' from spawning." })
-Groupboxes.Exploits_Remove:AddToggle("RemoveDread",   { Text = "Remove Dread",    Default = false, Tooltip = "Prevents 'Dread' from spawning." })
+Groupboxes.Exploits_Remove:AddToggle("RemoveHalt",	{ Text = "Remove Halt",	 Default = false, Tooltip = "Prevents 'Halt' from spawning." })
+Groupboxes.Exploits_Remove:AddToggle("RemoveA90",	 { Text = "Remove A-90",	 Default = false, Tooltip = "Prevents 'A-90' from spawning." })
+Groupboxes.Exploits_Remove:AddToggle("RemoveDread",   { Text = "Remove Dread",	Default = false, Tooltip = "Prevents 'Dread' from spawning." })
 Groupboxes.Exploits_Remove:AddToggle("RemoveSurge", { Text = "Remove Surge", Default = false, Tooltip = "Prevents 'Surge' from spawning."})
 Groupboxes.Exploits_Remove:AddDivider()
 Groupboxes.Exploits_Remove:AddToggle("NoScreechDamage", { Text = "No Screech Damage", Default = false, Tooltip = "Prevents 'Screech' from hurting you." })
-Groupboxes.Exploits_Remove:AddToggle("NoHaltDamage",    { Text = "No Halt Damage",    Default = false, Tooltip = "Prevents 'Halt' from hurting you." })
-Groupboxes.Exploits_Remove:AddToggle("NoA90Damage",     { Text = "No A-90 Damage",    Default = false, Tooltip = "Prevents 'A-90' from hurting you." })
+Groupboxes.Exploits_Remove:AddToggle("NoHaltDamage",	{ Text = "No Halt Damage",	Default = false, Tooltip = "Prevents 'Halt' from hurting you." })
+Groupboxes.Exploits_Remove:AddToggle("NoA90Damage",	 { Text = "No A-90 Damage",	Default = false, Tooltip = "Prevents 'A-90' from hurting you." })
 Groupboxes.Exploits_Remove:AddToggle("NoSurgeDamage",   { Text = "No Surge Damage",   Default = false, Tooltip = "Prevents 'Surge' from hurting you." })
 
 Toggles.NoScreechDamage:OnChanged(function(Value)
@@ -2794,8 +2794,8 @@ end)
 Groupboxes.Exploits_Audio = Tabs.Exploits:AddLeftGroupbox("Audio")
 Globals.JamMuffle = Services.SoundService:WaitForChild("Main"):FindFirstChild("Jamming") or Instance.new("EqualizerSoundEffect")
 
-Groupboxes.Exploits_Audio:AddToggle("RemoveFootstepSounds",    { Text = "Remove Footstep Sounds",    Default = false, Tooltip = "Removes the sounds when walking." })
-Groupboxes.Exploits_Audio:AddToggle("RemoveJamminMusic",       { Text = "Remove Jammin Music",       Default = false, Tooltip = "Removes the music and muffle effect from the 'Jammin' modifier." })
+Groupboxes.Exploits_Audio:AddToggle("RemoveFootstepSounds",	{ Text = "Remove Footstep Sounds",	Default = false, Tooltip = "Removes the sounds when walking." })
+Groupboxes.Exploits_Audio:AddToggle("RemoveJamminMusic",	   { Text = "Remove Jammin Music",	   Default = false, Tooltip = "Removes the music and muffle effect from the 'Jammin' modifier." })
 Groupboxes.Exploits_Audio:AddToggle("RemoveInteractingSounds", { Text = "Remove Interacting Sounds", Default = false, Tooltip = "Removes the sounds when interacting with proximity prompts." })
 
 Toggles.RemoveJamminMusic:OnChanged(function(Value)
@@ -2808,7 +2808,7 @@ end)
 Toggles.RemoveInteractingSounds:OnChanged(function(Value)
 	local PS = Globals.MainUI.Initiator.Main_Game.PromptService
 	PS.Triggered.Volume   = Value and 0 or 0.04
-	PS.Holding.Volume     = Value and 0 or 0.1
+	PS.Holding.Volume	 = Value and 0 or 0.1
 	PS.Notification.Volume = Value and 0 or 0.03
 	Globals.MainUI.Initiator.Main_Game.Reminder.Caption.Volume = Value and 0 or 0.1
 end)
@@ -2817,7 +2817,7 @@ Groupboxes.Visuals_LeftTab = Tabs.Visuals:AddLeftTabbox("Camera / Effects")
 Groupboxes.Visuals_Camera = Groupboxes.Visuals_LeftTab:AddTab("Camera")
 Groupboxes.Visuals_Camera:AddToggle("AmbientToggle", { Text = "Ambient", Default = false, Tooltip = "Changes the lighting color to the specified value." })
 Groupboxes.Visuals_Camera:AddSlider("FieldOfView", { Text = "Field of View", Min = 1, Max = 120, Default = 70, Rounding = 0 })
-Groupboxes.Visuals_Camera:AddToggle("FOVToggle", {    Text = "Custom FOV",    Default = false,    Tooltip = "Only applies the Field of View slider when enabled." })
+Groupboxes.Visuals_Camera:AddToggle("FOVToggle", {	Text = "Custom FOV",	Default = false,	Tooltip = "Only applies the Field of View slider when enabled." })
 Groupboxes.Visuals_Camera:AddDivider()
 Groupboxes.Visuals_Camera:AddToggle("RemoveCameraShake", {
 	Text = "Remove Camera Shake", Default = false, Tooltip = "Prevents the camera from shaking.",
@@ -2866,17 +2866,17 @@ Toggles.RemoveCameraFog:OnChanged(function(Value)
 	end
 end)
 Toggles.RemoveCutscenes:OnChanged(function(Value)
-    local Cutscenes = Globals.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes
-    for _, Object in pairs(Cutscenes:GetChildren()) do
-        if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") or table.find(CutsceneNames, Object:GetAttribute("OriginalName")) and Object:IsA("ModuleScript") then
-            Object.Name = (Value and Object.Name .. "_Disabled" or Object:GetAttribute("OriginalName"))
-        end
-    end
-    for _, Object in pairs(FloorReplicated:GetChildren()) do
-        if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") or table.find(CutsceneNames, Object:GetAttribute("OriginalName")) and Object:IsA("ModuleScript") then
-            Object.Name = (Value and Object.Name .. "_Disabled" or Object:GetAttribute("OriginalName"))
-        end
-    end
+	local Cutscenes = Globals.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes
+	for _, Object in pairs(Cutscenes:GetChildren()) do
+		if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") or table.find(CutsceneNames, Object:GetAttribute("OriginalName")) and Object:IsA("ModuleScript") then
+			Object.Name = (Value and Object.Name .. "_Disabled" or Object:GetAttribute("OriginalName"))
+		end
+	end
+	for _, Object in pairs(FloorReplicated:GetChildren()) do
+		if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") or table.find(CutsceneNames, Object:GetAttribute("OriginalName")) and Object:IsA("ModuleScript") then
+			Object.Name = (Value and Object.Name .. "_Disabled" or Object:GetAttribute("OriginalName"))
+		end
+	end
 end)
 
 Groupboxes.Visuals_Effects = Groupboxes.Visuals_LeftTab:AddTab("Effects")
@@ -2912,10 +2912,10 @@ end)
 Groupboxes.Visuals_Effects:AddDivider()
 Groupboxes.Visuals_Effects:AddToggle("DisableGlitchJumpscare",   { Text = "Disable Glitch Jumpscare",   Default = false, Tooltip = "Disables the jumpscare from 'Glitch'" })
 Groupboxes.Visuals_Effects:AddToggle("DisableTimothyJumpscare",  { Text = "Disable Timothy Jumpscare",  Default = false, Tooltip = "Disables the jumpscare from 'Timothy'" })
-Groupboxes.Visuals_Effects:AddToggle("DisableVoidJumpscare",     { Text = "Disable Void Jumpscare",     Default = false, Tooltip = "Disables the jumpscare from 'Void'" })
+Groupboxes.Visuals_Effects:AddToggle("DisableVoidJumpscare",	 { Text = "Disable Void Jumpscare",	 Default = false, Tooltip = "Disables the jumpscare from 'Void'" })
 Groupboxes.Visuals_Effects:AddDivider()
-Groupboxes.Visuals_Effects:AddToggle("DisableHideVignette",      { Text = "Disable Hide Vignette",      Default = false, Tooltip = "Disables the hiding screen effect." })
-Groupboxes.Visuals_Effects:AddToggle("DisableFiredampEffect",    { Text = "Disable Firedamp Effect",    Default = false, Tooltip = "Disables the firedamp screen effect." })
+Groupboxes.Visuals_Effects:AddToggle("DisableHideVignette",	  { Text = "Disable Hide Vignette",	  Default = false, Tooltip = "Disables the hiding screen effect." })
+Groupboxes.Visuals_Effects:AddToggle("DisableFiredampEffect",	{ Text = "Disable Firedamp Effect",	Default = false, Tooltip = "Disables the firedamp screen effect." })
 Groupboxes.Visuals_Effects:AddToggle("DisableEntityJumpscares",  { Text = "Disable Entity Jumpscares",  Default = false, Tooltip = "Disables jumpscares from entities like Rush and Ambush." })
 
 Toggles.DisableGlitchJumpscare:OnChanged(function(Value)
@@ -2958,8 +2958,8 @@ Toggles.DisableEntityJumpscares:OnChanged(function(Value)
 	end
 end)
 
-Groupboxes.Visuals_RightTab     = Tabs.Visuals:AddRightTabbox("Entities / Settings")
-Groupboxes.Visuals_Entities     = Groupboxes.Visuals_RightTab:AddTab("Entities")
+Groupboxes.Visuals_RightTab	 = Tabs.Visuals:AddRightTabbox("Entities / Settings")
+Groupboxes.Visuals_Entities	 = Groupboxes.Visuals_RightTab:AddTab("Entities")
 Groupboxes.Visuals_EntitySettings = Groupboxes.Visuals_RightTab:AddTab("Settings")
 
 Groupboxes.Visuals_Entities:AddDropdown("EntityList", {
@@ -2967,7 +2967,7 @@ Groupboxes.Visuals_Entities:AddDropdown("EntityList", {
 	Values = { "Rush","Bash","Scribbles","Teller","DronesStampede","Creak","Noise","Balls","Ambush","Eyes","Halt","Blitz","Lookman","Gloombat Swarm","A-60","A-120","Sally","Jeff the Killer","Groundskeeper","Monument","AR0xMBUSH","RNIUSHCG==" },
 	Multi = true, AllowNull = true
 })
-Groupboxes.Visuals_Entities:AddToggle("NotifyEntities",    { Text = "Notify Entities",    Default = false, Tooltip = "Sends a notification when an entity spawns." })
+Groupboxes.Visuals_Entities:AddToggle("NotifyEntities",	{ Text = "Notify Entities",	Default = false, Tooltip = "Sends a notification when an entity spawns." })
 Groupboxes.Visuals_Entities:AddDivider()
 
 local ItemsToNotify = {}
@@ -2983,11 +2983,11 @@ Groupboxes.Visuals_Entities:AddDropdown("NotifyItemList", {
 	Values = ItemsToNotify,
 	Multi = true, AllowNull = true
 })
-Groupboxes.Visuals_Entities:AddToggle("NotifyItemsToggle",    { Text = "Notify Items",    Default = false, Tooltip = "Sends a notification when an item spawns." })
-Groupboxes.Visuals_Entities:AddToggle("NotifyItemsShowDistance",    { Text = "Show Distance",    Default = false, Tooltip = "Shows how far away the item is in the notification." })
+Groupboxes.Visuals_Entities:AddToggle("NotifyItemsToggle",	{ Text = "Notify Items",	Default = false, Tooltip = "Sends a notification when an item spawns." })
+Groupboxes.Visuals_Entities:AddToggle("NotifyItemsShowDistance",	{ Text = "Show Distance",	Default = false, Tooltip = "Shows how far away the item is in the notification." })
 Groupboxes.Visuals_Entities:AddDivider()
 Groupboxes.Visuals_Entities:AddToggle("NotifyLibraryCode", { Text = "Notify Library Code", Default = false, Tooltip = "Automatically solves the code for the library padlock." })
-Groupboxes.Visuals_Entities:AddToggle("NotifyOxygen",      { Text = "Notify Oxygen Level", Default = false, Tooltip = "Shows how much oxygen you have remaining." })
+Groupboxes.Visuals_Entities:AddToggle("NotifyOxygen",	  { Text = "Notify Oxygen Level", Default = false, Tooltip = "Shows how much oxygen you have remaining." })
 Groupboxes.Visuals_Entities:AddToggle("NotifyHasteTime",   { Text = "Notify Haste Time",   Default = false, Tooltip = "Shows how much time you have remaining before 'Haste' spawns." })
 
 Globals.LibraryCodeFound = false
@@ -3013,7 +3013,7 @@ Groupboxes.Visuals_EntitySettings:AddButton({ Text = "Test Notification", Double
 	Functions.Notify({Title = "This is a test."})
 end})
 
-Groupboxes.Visuals_ESP          = Tabs.Visuals:AddRightTabbox("ESP/Settings")
+Groupboxes.Visuals_ESP		  = Tabs.Visuals:AddRightTabbox("ESP/Settings")
 Groupboxes.Visuals_ESP_Toggles  = Groupboxes.Visuals_ESP:AddTab("ESP")
 Groupboxes.Visuals_ESP_Settings = Groupboxes.Visuals_ESP:AddTab("Settings")
 
@@ -3044,23 +3044,23 @@ Toggles.ObjectiveESPToggle:AddColorPicker("ObjectiveESPColor", { Text = "Objecti
 
 local ObjectiveLabels = {
 	["ShoppingCart"]		   = "Shopping Cart",
-	["StairwellFireAlarm"]     = "Fire Alarm",
+	["StairwellFireAlarm"]	 = "Fire Alarm",
 	["SalvageChute"]		   = "Salvage",
 	["ArchivesPackageDeposit"] = "BoxDeposit",
 	["Cellar"] 				   = "Cellar",
-	["ArchivesFihTank"]        = "Fih Tank",
-	["KeyObtain"]              = "Door Key",
-	["ElectricalKeyObtain"]    = "Electrical Key",
-	["MinesGenerator"]         = "Generator",
-	["FuseObtain"]             = "Generator Fuse",
-	["LiveHintBook"]           = "Hint Book",
+	["ArchivesFihTank"]		= "Fih Tank",
+	["KeyObtain"]			  = "Door Key",
+	["ElectricalKeyObtain"]	= "Electrical Key",
+	["MinesGenerator"]		 = "Generator",
+	["FuseObtain"]			 = "Generator Fuse",
+	["LiveHintBook"]		   = "Hint Book",
 	["LiveBreakerPolePickup"]  = "Fuse Breaker",
-	["LibraryHintPaper"]       = "Hint Paper",
-	["PickupItem"]             = "Hint Paper",
-	["CringlePresent"]         = "Present",
-	["LeverForGate"]           = "Gate Lever",
-	["MinesGateButton"]        = "Gate Button",
-	["GardenGateButton"]       = "Gate Button",
+	["LibraryHintPaper"]	   = "Hint Paper",
+	["PickupItem"]			 = "Hint Paper",
+	["CringlePresent"]		 = "Present",
+	["LeverForGate"]		   = "Gate Lever",
+	["MinesGateButton"]		= "Gate Button",
+	["GardenGateButton"]	   = "Gate Button",
 }
 
 Toggles.ObjectiveESPToggle:OnChanged(function(Value)
@@ -3090,30 +3090,30 @@ Options.ObjectiveESPColor:OnChanged(function(Value)
 	end
 end)
 
-Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPToggle",       { Text = "Doors",        Default = false, Tooltip = "Highlights the next door." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("DoorESPToggle",	   { Text = "Doors",		Default = false, Tooltip = "Highlights the next door." })
 Groupboxes.Visuals_ESP_Toggles:AddToggle("HidingSpotESPToggle", { Text = "Hiding Spots", Default = false, Tooltip = "Highlights places where you can hide from entities" })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPToggle",     { Text = "Players",      Default = false, Tooltip = "Highlights other players." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPToggle",      { Text = "Chests",       Default = false, Tooltip = "Highlights objects that can contain loot." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPToggle",       { Text = "Items",        Default = false, Tooltip = "Highlights all collectable items/consumables." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPToggle",   { Text = "Currency",     Default = false, Tooltip = "Highlights all currency that spawns." })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPToggle",     { Text = "Ladders",      Default = false, Tooltip = "Highlights ladders that can be used to disable the anticheat." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("PlayerESPToggle",	 { Text = "Players",	  Default = false, Tooltip = "Highlights other players." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ChestESPToggle",	  { Text = "Chests",	   Default = false, Tooltip = "Highlights objects that can contain loot." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("ItemESPToggle",	   { Text = "Items",		Default = false, Tooltip = "Highlights all collectable items/consumables." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("CurrencyESPToggle",   { Text = "Currency",	 Default = false, Tooltip = "Highlights all currency that spawns." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("LadderESPToggle",	 { Text = "Ladders",	  Default = false, Tooltip = "Highlights ladders that can be used to disable the anticheat." })
 Groupboxes.Visuals_ESP_Toggles:AddDivider()
-Groupboxes.Visuals_ESP_Toggles:AddDropdown("EntityESPOptions",     { 
+Groupboxes.Visuals_ESP_Toggles:AddDropdown("EntityESPOptions",	 { 
 	Text = "Entity List",
 	Values = { "Rush","Bash","Scribbles","Teller","DronesStampede","Creak","Noise","Balls","Ambush","Eyes","Dupe","Figure","Blitz","Lookman","Snare","Giggle","Gloombat Eggs","Grumble","A-60","A-120","Sally","Jeff the Killer","Groundskeeper","Mandrake Hole","Monument","Bramble","AR0xMBUSH","RNIUSHCG==" },
 	Multi = true,
 	AllowNull = true
 })
-Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPToggle",     { Text = "Entities",      Default = false, Tooltip = "Highlights all entities that spawn." })
+Groupboxes.Visuals_ESP_Toggles:AddToggle("EntityESPToggle",	 { Text = "Entities",	  Default = false, Tooltip = "Highlights all entities that spawn." })
 
-Toggles.DoorESPToggle:AddColorPicker("DoorESPColor",           { Text = "Doors",        Default = Color3.fromRGB(0, 200, 255),  Transparency = 0 })
+Toggles.DoorESPToggle:AddColorPicker("DoorESPColor",		   { Text = "Doors",		Default = Color3.fromRGB(0, 200, 255),  Transparency = 0 })
 Toggles.HidingSpotESPToggle:AddColorPicker("HidingSpotESPColor", { Text = "Hiding Spots", Default = Color3.fromRGB(255, 170, 0),  Transparency = 0 })
-Toggles.PlayerESPToggle:AddColorPicker("PlayerESPColor",       { Text = "Players",      Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
-Toggles.ChestESPToggle:AddColorPicker("ChestESPColor",         { Text = "Chests",       Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
-Toggles.ItemESPToggle:AddColorPicker("ItemESPColor",           { Text = "Items",        Default = Color3.fromRGB(170, 0, 255),   Transparency = 0 })
-Toggles.CurrencyESPToggle:AddColorPicker("CurrencyESPColor",   { Text = "Currency",     Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
-Toggles.LadderESPToggle:AddColorPicker("LadderESPColor",       { Text = "Ladders",      Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
-Toggles.EntityESPToggle:AddColorPicker("EntityESPColor",       { Text = "Entities",     Default = Color3.fromRGB(255, 0, 0),     Transparency = 0 })
+Toggles.PlayerESPToggle:AddColorPicker("PlayerESPColor",	   { Text = "Players",	  Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
+Toggles.ChestESPToggle:AddColorPicker("ChestESPColor",		 { Text = "Chests",	   Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
+Toggles.ItemESPToggle:AddColorPicker("ItemESPColor",		   { Text = "Items",		Default = Color3.fromRGB(170, 0, 255),   Transparency = 0 })
+Toggles.CurrencyESPToggle:AddColorPicker("CurrencyESPColor",   { Text = "Currency",	 Default = Color3.fromRGB(255, 255, 0),   Transparency = 0 })
+Toggles.LadderESPToggle:AddColorPicker("LadderESPColor",	   { Text = "Ladders",	  Default = Color3.fromRGB(255, 255, 255), Transparency = 0 })
+Toggles.EntityESPToggle:AddColorPicker("EntityESPColor",	   { Text = "Entities",	 Default = Color3.fromRGB(255, 0, 0),	 Transparency = 0 })
 
 local HidingSpotLabels = {
 	Wardrobe = "Closet", ["Backdoor_Wardrobe"] = "Closet", Toolshed = "Closet",
@@ -3281,16 +3281,16 @@ Options.LadderESPColor:OnChanged(function(Value)
 	for _, Object in Objects.Ladders do Abysall.ESPLibrary:UpdateObjectColor(Object, Value) end
 end)
 
-Groupboxes.Visuals_ESP_Settings:AddToggle("ESPRainbow",     { Text = "Rainbow Effect", Default = false, Tooltip = "Makes the esp objects change colour like a rainbow." })
+Groupboxes.Visuals_ESP_Settings:AddToggle("ESPRainbow",	 { Text = "Rainbow Effect", Default = false, Tooltip = "Makes the esp objects change colour like a rainbow." })
 Groupboxes.Visuals_ESP_Settings:AddToggle("ESPShowDistance",{ Text = "Show Distance",  Default = true,  Tooltip = "Shows how far away your character is from the object." })
 Groupboxes.Visuals_ESP_Settings:AddDivider()
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPFillTransparency",        { Text = "Fill Transparency",         Min = 0, Max = 1, Default = 0.75, Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPOutlineTransparency",     { Text = "Outline Transparency",      Min = 0, Max = 1, Default = 0,    Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextTransparency",        { Text = "Text Transparency",         Min = 0, Max = 1, Default = 0,    Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextOutlineTransparency", { Text = "Text Outline Transparency", Min = 0, Max = 1, Default = 0,    Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPFadeTime",                { Text = "Fade Time",                 Min = 0, Max = 1, Default = 0.25, Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPRenderLimit",             { Text = "Render Limit",              Min = 30, Max = 240, Default = 240, Rounding = 0, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextSize",                { Text = "Text Size",                 Min = 12, Max = 24, Default = 20, Rounding = 0, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPFillTransparency",		{ Text = "Fill Transparency",		 Min = 0, Max = 1, Default = 0.75, Rounding = 2, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPOutlineTransparency",	 { Text = "Outline Transparency",	  Min = 0, Max = 1, Default = 0,	Rounding = 2, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextTransparency",		{ Text = "Text Transparency",		 Min = 0, Max = 1, Default = 0,	Rounding = 2, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextOutlineTransparency", { Text = "Text Outline Transparency", Min = 0, Max = 1, Default = 0,	Rounding = 2, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPFadeTime",				{ Text = "Fade Time",				 Min = 0, Max = 1, Default = 0.25, Rounding = 2, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPRenderLimit",			 { Text = "Render Limit",			  Min = 30, Max = 240, Default = 240, Rounding = 0, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTextSize",				{ Text = "Text Size",				 Min = 12, Max = 24, Default = 20, Rounding = 0, Compact = true })
 Groupboxes.Visuals_ESP_Settings:AddDropdown("ESPTextFont", {
 	Text = "Text Font",
 	Values = { "Legacy","Arial","ArialBold","SourceSans","SourceSansBold","SourceSansLight","SourceSansItalic","Bodoni","Garamond","Cartoon","Code","Highway","SciFi","Arcade","Fantasy","Antique","SourceSansSemibold","Gotham","GothamMedium","GothamBold","GothamBlack","AmaticSC","Bangers","Creepster","DenkOne","Fondamento","FredokaOne","GrenzeGotisch","IndieFlower","JosefinSans","Jura","Kalam","LuckiestGuy","Merriweather","Michroma","Nunito","Oswald","PatrickHand","PermanentMarker","Roboto","RobotoCondensed","RobotoMono","Sarpanch","SpecialElite","TitilliumWeb","Ubuntu","BuilderSans","BuilderSansMedium","BuilderSansBold","BuilderSansExtraBold","Arimo","ArimoBold" },
@@ -3299,10 +3299,10 @@ Groupboxes.Visuals_ESP_Settings:AddDropdown("ESPTextFont", {
 Groupboxes.Visuals_ESP_Settings:AddDivider()
 Groupboxes.Visuals_ESP_Settings:AddDropdown("ESPTracersOrigin",  { Text = "Tracer Origin", Values = { "Bottom","Center","Top","Mouse" }, Default = 1 })
 Groupboxes.Visuals_ESP_Settings:AddSlider("ESPTracerThickness",  { Text = "Tracer Thickness", Min = 0.5, Max = 2, Default = 0.75, Rounding = 2, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddToggle("ESPTracersToggle",    { Text = "Enable Tracers", Default = false, Tooltip = "Draws a line to highlighted objects." })
+Groupboxes.Visuals_ESP_Settings:AddToggle("ESPTracersToggle",	{ Text = "Enable Tracers", Default = false, Tooltip = "Draws a line to highlighted objects." })
 Groupboxes.Visuals_ESP_Settings:AddDivider()
-Groupboxes.Visuals_ESP_Settings:AddSlider("ESPArrowsRadius",     { Text = "Arrow Radius", Min = 100, Max = 500, Default = 250, Rounding = 0, Compact = true })
-Groupboxes.Visuals_ESP_Settings:AddToggle("ESPArrowsToggle",     { Text = "Enable Arrows", Default = false, Tooltip = "Shows arrow that point to off-screen objects." })
+Groupboxes.Visuals_ESP_Settings:AddSlider("ESPArrowsRadius",	 { Text = "Arrow Radius", Min = 100, Max = 500, Default = 250, Rounding = 0, Compact = true })
+Groupboxes.Visuals_ESP_Settings:AddToggle("ESPArrowsToggle",	 { Text = "Enable Arrows", Default = false, Tooltip = "Shows arrow that point to off-screen objects." })
 
 Abysall.ESPLibrary:SetRainbow(false)
 Abysall.ESPLibrary:SetShowDistance(true)
@@ -3321,21 +3321,21 @@ Abysall.ESPLibrary:SetArrows(false)
 Abysall.ESPLibrary:SetArrowRadius(250)
 Abysall.ESPLibrary:SetDistanceSizeRatio(0.8)
 
-Toggles.ESPRainbow:OnChanged(function(V)        Abysall.ESPLibrary:SetRainbow(V) end)
+Toggles.ESPRainbow:OnChanged(function(V)		Abysall.ESPLibrary:SetRainbow(V) end)
 Toggles.ESPShowDistance:OnChanged(function(V)   Abysall.ESPLibrary:SetShowDistance(V) end)
-Options.ESPFillTransparency:OnChanged(function(V)        Abysall.ESPLibrary:SetFillTransparency(V) end)
-Options.ESPOutlineTransparency:OnChanged(function(V)     Abysall.ESPLibrary:SetOutlineTransparency(V) end)
-Options.ESPTextTransparency:OnChanged(function(V)        Abysall.ESPLibrary:SetTextTransparency(V) end)
+Options.ESPFillTransparency:OnChanged(function(V)		Abysall.ESPLibrary:SetFillTransparency(V) end)
+Options.ESPOutlineTransparency:OnChanged(function(V)	 Abysall.ESPLibrary:SetOutlineTransparency(V) end)
+Options.ESPTextTransparency:OnChanged(function(V)		Abysall.ESPLibrary:SetTextTransparency(V) end)
 Options.ESPTextOutlineTransparency:OnChanged(function(V) Abysall.ESPLibrary:SetTextOutlineTransparency(V) end)
-Options.ESPFadeTime:OnChanged(function(V)        Abysall.ESPLibrary:SetFadeTime(V) end)
-Options.ESPRenderLimit:OnChanged(function(V)     Abysall.ESPLibrary:SetRenderLimit(V) end)
-Options.ESPTextSize:OnChanged(function(V)        Abysall.ESPLibrary:SetTextSize(V) end)
-Options.ESPTextFont:OnChanged(function(V)        Abysall.ESPLibrary:SetFont(Enum.Font[V]) end)
+Options.ESPFadeTime:OnChanged(function(V)		Abysall.ESPLibrary:SetFadeTime(V) end)
+Options.ESPRenderLimit:OnChanged(function(V)	 Abysall.ESPLibrary:SetRenderLimit(V) end)
+Options.ESPTextSize:OnChanged(function(V)		Abysall.ESPLibrary:SetTextSize(V) end)
+Options.ESPTextFont:OnChanged(function(V)		Abysall.ESPLibrary:SetFont(Enum.Font[V]) end)
 Toggles.ESPTracersToggle:OnChanged(function(V)   Abysall.ESPLibrary:SetTracers(V) end)
 Options.ESPTracersOrigin:OnChanged(function(V)   Abysall.ESPLibrary:SetTracerOrigin(V) end)
 Options.ESPTracerThickness:OnChanged(function(V) Abysall.ESPLibrary:SetTracerSize(V) end)
-Toggles.ESPArrowsToggle:OnChanged(function(V)    Abysall.ESPLibrary:SetArrows(V) end)
-Options.ESPArrowsRadius:OnChanged(function(V)    Abysall.ESPLibrary:SetArrowRadius(V) end)
+Toggles.ESPArrowsToggle:OnChanged(function(V)	Abysall.ESPLibrary:SetArrows(V) end)
+Options.ESPArrowsRadius:OnChanged(function(V)	Abysall.ESPLibrary:SetArrowRadius(V) end)
 
 
 
@@ -3398,8 +3398,8 @@ Groupboxes.Rooms_Automation:AddSlider("RoomsAutoWalkPathfindTimeout", { Text = "
 Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkIgnoreA60", { Text = "Ignore A-60", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Continues to walk if entity 'A-60' is present, enables position spoof automatically." })
 Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkShowPathToggle", { Text = "Show Path", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Shows the current path of rooms auto-walk." })
 Groupboxes.Rooms_Automation:AddToggle("RoomsAutoWalkSpoofFootsteps", {
-    Text = "Spoof Footsteps", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Makes it appear as if your character is walking normally.",
-    Disabled = not Functions.CheckCompatability({"hookmetamethod", "newcclosure", "getnamecallmethod"}), DisabledTooltip = Globals.IncompatibleMessage
+	Text = "Spoof Footsteps", Default = false, Risky = Floor ~= "Rooms", Tooltip = "Makes it appear as if your character is walking normally.",
+	Disabled = not Functions.CheckCompatability({"hookmetamethod", "newcclosure", "getnamecallmethod"}), DisabledTooltip = Globals.IncompatibleMessage
 })
 
 Toggles.RoomsAutoWalk:OnChanged(function()
@@ -3582,7 +3582,7 @@ Connections.RoomsHandler = CurrentRooms.ChildAdded:Connect(function(Room)
 	end
 
 	if Room:GetAttribute("RawName") and string.find(Room:GetAttribute("RawName"), "Eyestalk") then
-        local PreviousNode = nil
+		local PreviousNode = nil
 
 		local function CreateEyestalkNode(WaypointPos)
 			local NewNode = Instance.new("Part")
@@ -3634,7 +3634,7 @@ Connections.RoomsHandler = CurrentRooms.ChildAdded:Connect(function(Room)
 						CreateEyestalkNode(Waypoint.Position)
 						task.wait()
 					end
-                    break
+					break
 				end
 			end
 			task.wait(0.25)
@@ -3644,13 +3644,13 @@ end)
 
 Groupboxes.Mines_Completion = Tabs.Mines:AddLeftGroupbox("Completion")
 Groupboxes.Mines_Completion:AddButton({
-    Text = "Auto Complete Dam Seek",
-    Tooltip = "Automatically teleports to and interacts with each water pump.",
-    Func = function()
-        if LatestRoom.Value < 100 or Floor ~= "Mines" then
-            Functions.Notify({Title = "You must be in Room 200 to do this."})
-            return
-        end
+	Text = "Auto Complete Dam Seek",
+	Tooltip = "Automatically teleports to and interacts with each water pump.",
+	Func = function()
+		if LatestRoom.Value < 100 or Floor ~= "Mines" then
+			Functions.Notify({Title = "You must be in Room 200 to do this."})
+			return
+		end
 
 		local IsCutscene = false
 		local CutsceneConnection = RemotesFolder.Cutscene.OnClientEvent:Connect(function()
@@ -3659,66 +3659,66 @@ Groupboxes.Mines_Completion:AddButton({
 			IsCutscene = false
 		end)
 
-        local function GetNextPump()
-            local Highest = {
-                Height = -69420,
-                Object = nil
-            }
-            for _, Object in pairs(Objects.Objectives) do
-                if Object.Name == "WaterPump" and Object:GetAttribute("Abysall_Completed") ~= true then
-                    if Object.PrimaryPart and Object.PrimaryPart.Position.Y > Highest.Height then
-                        Highest.Object = Object
-                        Highest.Height = Object.PrimaryPart.Position.Y
-                    end
-                end
-            end
-            return Highest.Object
-        end
+		local function GetNextPump()
+			local Highest = {
+				Height = -69420,
+				Object = nil
+			}
+			for _, Object in pairs(Objects.Objectives) do
+				if Object.Name == "WaterPump" and Object:GetAttribute("Abysall_Completed") ~= true then
+					if Object.PrimaryPart and Object.PrimaryPart.Position.Y > Highest.Height then
+						Highest.Object = Object
+						Highest.Height = Object.PrimaryPart.Position.Y
+					end
+				end
+			end
+			return Highest.Object
+		end
 
-        local function HandlePump(Pump)
+		local function HandlePump(Pump)
 
-            while task.wait(0.1) do
+			while task.wait(0.1) do
 				if IsCutscene then
 					continue
 				end
 
-                Character:PivotTo(Pump:GetPivot())
+				Character:PivotTo(Pump:GetPivot())
 
-                local Prompt = Pump:FindFirstChild("ValvePrompt", true)
-                if Prompt then
-                    Functions.ForceFirePrompt(Prompt)
-                end
+				local Prompt = Pump:FindFirstChild("ValvePrompt", true)
+				if Prompt then
+					Functions.ForceFirePrompt(Prompt)
+				end
 
-                if Pump:GetAttribute("Abysall_Completed") then
-                    break
-                end
-            end
-        end
+				if Pump:GetAttribute("Abysall_Completed") then
+					break
+				end
+			end
+		end
 
-        Functions.Notify({Title = "Attempting to complete the valves.", Body = "Please wait."})
-        while task.wait(0.1) do
-            local Pump = GetNextPump()
-            if Pump then
-                HandlePump(Pump)
-            else
-                break
-            end
-        end
-        Functions.Notify({Title = "Successfully completed the valves."})
-    end
+		Functions.Notify({Title = "Attempting to complete the valves.", Body = "Please wait."})
+		while task.wait(0.1) do
+			local Pump = GetNextPump()
+			if Pump then
+				HandlePump(Pump)
+			else
+				break
+			end
+		end
+		Functions.Notify({Title = "Successfully completed the valves."})
+	end
 })
 
 
 Groupboxes.Legacy_Completion = Tabs.Legacy:AddRightGroupbox("Completion")
 Groupboxes.Legacy_Completion:AddButton({
-    Text = "Auto Complete Cringle",
-    Tooltip = "Instantly completes the quest.",
-    Func = function()
-        local TouchPart = CurrentRooms:FindFirstChild("RippleExitDoor", true)
-        if TouchPart then
-            Character:PivotTo(TouchPart:GetPivot())
-        end
-    end
+	Text = "Auto Complete Cringle",
+	Tooltip = "Instantly completes the quest.",
+	Func = function()
+		local TouchPart = CurrentRooms:FindFirstChild("RippleExitDoor", true)
+		if TouchPart then
+			Character:PivotTo(TouchPart:GetPivot())
+		end
+	end
 })
 
 Groupboxes.Mines_Visuals = Tabs.Mines:AddLeftGroupbox("Visuals")
@@ -3771,9 +3771,9 @@ Groupboxes.Legacy_Bypass:AddToggle("FigureGodmode", {
 	Risky = not (Floor == "Fools" or Floor == "OldHotel")
 })
 Groupboxes.Legacy_Bypass:AddDivider()
-Groupboxes.Legacy_Bypass:AddToggle("RemoveBasementGate",  { Text = "Remove Basement Gate",   Default = false, Tooltip = "Removes the gate from basement rooms.",            Risky = not (Floor == "Fools" or Floor == "OldHotel") })
+Groupboxes.Legacy_Bypass:AddToggle("RemoveBasementGate",  { Text = "Remove Basement Gate",   Default = false, Tooltip = "Removes the gate from basement rooms.",			Risky = not (Floor == "Fools" or Floor == "OldHotel") })
 Groupboxes.Legacy_Bypass:AddToggle("RemovePaintingsDoor", { Text = "Remove Paintings Door",  Default = false, Tooltip = "Removes the fireplace doors from painting rooms.", Risky = not (Floor == "Fools" or Floor == "OldHotel") })
-Groupboxes.Legacy_Bypass:AddToggle("RemoveSkeletonDoor",  { Text = "Remove Skeleton Door",   Default = false, Tooltip = "Removes the skeleton door from the infirmary.",    Risky = Floor ~= "Fools" })
+Groupboxes.Legacy_Bypass:AddToggle("RemoveSkeletonDoor",  { Text = "Remove Skeleton Door",   Default = false, Tooltip = "Removes the skeleton door from the infirmary.",	Risky = Floor ~= "Fools" })
 
 local ObstructionNames = { ThingToOpen = "RemoveBasementGate", MovingDoor = "RemovePaintingsDoor", Wax_Door = "RemoveSkeletonDoor" }
 for ObjName, ToggleName in ObstructionNames do
@@ -3853,15 +3853,15 @@ if Functions.CheckCompatability({"hookmetamethod", "newcclosure", "getnamecallme
 		return MainHook(Self, table.unpack(Args))
 	end))
 
-    OtherHook = Abysall.Environment.hookmetamethod(game, "__index", Abysall.Environment.newcclosure(function(Self, Property)
-        local Real = OtherHook(Self, Property)
+	OtherHook = Abysall.Environment.hookmetamethod(game, "__index", Abysall.Environment.newcclosure(function(Self, Property)
+		local Real = OtherHook(Self, Property)
 
-        if Property == "MoveDirection" and Self == Humanoid and Globals.RoomsAutoWalkActive and Toggles.RoomsAutoWalkSpoofFootsteps.Value and Floor == "Rooms" and not Character:GetAttribute("Hiding") then
-            return RootPart.CFrame.LookVector
-        end
-        
-        return Real
-    end))
+		if Property == "MoveDirection" and Self == Humanoid and Globals.RoomsAutoWalkActive and Toggles.RoomsAutoWalkSpoofFootsteps.Value and Floor == "Rooms" and not Character:GetAttribute("Hiding") then
+			return RootPart.CFrame.LookVector
+		end
+		
+		return Real
+	end))
 end
 
 if Services.ReplicatedStorage:FindFirstChild("ModulesClient") then
@@ -3871,13 +3871,13 @@ else
 end
 
 Modules = {
-	Glitch         = ClientModules.EntityModules.Glitch,
-	Shade          = ClientModules.EntityModules.Shade,
-	Void           = ClientModules.EntityModules:FindFirstChild("Void"),
+	Glitch		 = ClientModules.EntityModules.Glitch,
+	Shade		  = ClientModules.EntityModules.Shade,
+	Void		   = ClientModules.EntityModules:FindFirstChild("Void"),
 	SpiderJumpscare = nil,
-	A90            = nil,
-	Screech        = nil,
-	Dread          = nil,
+	A90			= nil,
+	Screech		= nil,
+	Dread		  = nil,
 	GlitchScreech  = nil,
 }
 
@@ -3992,9 +3992,9 @@ Functions.HandleCharacter = function(NewCharacter)
 	Globals.AnticheatDisabled = false
 
 	local UIModules = Globals.MainUI.Initiator.Main_Game.RemoteListener.Modules
-	Modules.A90             = UIModules:FindFirstChild("A90")
-	Modules.Screech         = UIModules.Screech
-	Modules.Dread           = UIModules:FindFirstChild("Dread")
+	Modules.A90			 = UIModules:FindFirstChild("A90")
+	Modules.Screech		 = UIModules.Screech
+	Modules.Dread		   = UIModules:FindFirstChild("Dread")
 	Modules.SpiderJumpscare = UIModules.SpiderJumpscare
 
 	if Toggles.RemoveScreech.Value					then Modules.Screech.Name = "Screech_Disabled" end
@@ -4019,23 +4019,23 @@ Functions.HandleCharacter = function(NewCharacter)
 		local JS = Globals.MainUI.Initiator.Main_Game.RemoteListener:FindFirstChild("Jumpscares")
 		if JS then JS.Name = "Jumpscares_Disabled" end
 	end
-    local Cutscenes = Globals.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes
-    for _, Object in pairs(Cutscenes:GetChildren()) do
-        if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") then
-            Object:SetAttribute("OriginalName", Object.Name)
-            if Toggles.RemoveCutscenes.Value then
-                Object.Name = Object.Name .. "_Disabled"
-            end
-        end
-    end
-    for _, Object in pairs(FloorReplicated:GetChildren()) do
-        if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") then
-            Object:SetAttribute("OriginalName", Object.Name)
-            if Toggles.RemoveCutscenes.Value then
-                Object.Name = Object.Name .. "_Disabled"
-            end
-        end
-    end
+	local Cutscenes = Globals.MainUI.Initiator.Main_Game.RemoteListener.Cutscenes
+	for _, Object in pairs(Cutscenes:GetChildren()) do
+		if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") then
+			Object:SetAttribute("OriginalName", Object.Name)
+			if Toggles.RemoveCutscenes.Value then
+				Object.Name = Object.Name .. "_Disabled"
+			end
+		end
+	end
+	for _, Object in pairs(FloorReplicated:GetChildren()) do
+		if table.find(CutsceneNames, Object.Name) and Object:IsA("ModuleScript") then
+			Object:SetAttribute("OriginalName", Object.Name)
+			if Toggles.RemoveCutscenes.Value then
+				Object.Name = Object.Name .. "_Disabled"
+			end
+		end
+	end
 
 	CustomPhysics = PhysicalProperties.new(
 		100,
@@ -4304,7 +4304,7 @@ Functions.HandleCharacter = function(NewCharacter)
 			CollisionPartClone.Massless = true
 		end
 
-		Globals.IsEyes    = Services.Workspace:FindFirstChild("Eyes") ~= nil or Services.Workspace:FindFirstChild("Lookman") ~= nil
+		Globals.IsEyes	= Services.Workspace:FindFirstChild("Eyes") ~= nil or Services.Workspace:FindFirstChild("Lookman") ~= nil
 		Globals.IsLookman = Services.Workspace:FindFirstChild("BackdoorLookman") ~= nil
 
 		if Toggles.AmbientToggle.Value then
@@ -4312,7 +4312,7 @@ Functions.HandleCharacter = function(NewCharacter)
 		end
 
 		if Main_Game then
-			if Toggles.RemoveCameraShake.Value     then Main_Game.csgo = CFrame.new() end
+			if Toggles.RemoveCameraShake.Value	 then Main_Game.csgo = CFrame.new() end
 			if Toggles.ViewmodelOffsetToggle.Value then
 				Main_Game.tooloffset = Vector3.new(Options.ViewmodelOffsetX.Value, Options.ViewmodelOffsetY.Value, Options.ViewmodelOffsetZ.Value)
 			else
@@ -4375,7 +4375,7 @@ Functions.HandleCharacter = function(NewCharacter)
 			end
 
 			local SpoofY = Toggles.PositionSpoof.Value and 2.328 or 0.18
-			Collision.Position     = RootPart.Position + Vector3.new(0, SpoofY, 0)
+			Collision.Position	 = RootPart.Position + Vector3.new(0, SpoofY, 0)
 			CollisionPart.Position = RootPart.Position + Vector3.new(0, SpoofY, 0)
 
 			if Collision:FindFirstChild("CollisionCrouch") and CollisionClone:FindFirstChild("CollisionCrouch") then
@@ -4843,8 +4843,8 @@ Functions.HandleObject = function(Object)
 			end
 			task.wait()
 		end
-    elseif Name == "MinecartRig" then
-        Globals.Minecart = Object
+	elseif Name == "MinecartRig" then
+		Globals.Minecart = Object
 	elseif Name == "RunnerNodes" then
 		local function IsBehind(Part1, Part2)
 			local P1 = (Part1.CFrame + Part1.CFrame.LookVector).Position
@@ -4853,7 +4853,7 @@ Functions.HandleObject = function(Object)
 		end
 		local function GetDirection(Part1, Part2)
 			local RightDist = Part1.CFrame.RightVector:Dot(Part1.Position - Part2.Position)
-			if RightDist > 0.5    then return IsBehind(Part1, Part2) and "Right" or "Left" end
+			if RightDist > 0.5	then return IsBehind(Part1, Part2) and "Right" or "Left" end
 			if RightDist < -0.5   then return IsBehind(Part1, Part2) and "Left" or "Right" end
 			return "Straight"
 		end
@@ -4920,20 +4920,20 @@ Functions.HandleObject = function(Object)
 				Part.CanTouch = not Toggles.BypassSeekingWall.Value
 				Part.CanCollide = not Toggles.BypassSeekingWall.Value
 
-                local Connection1 = Part:GetPropertyChangedSignal("CanTouch"):Connect(function()
-                    if Part.CanTouch == Toggles.BypassSeekingWall.Value then
-                        Part.CanTouch = not Toggles.BypassSeekingWall.Value
-                    end
-                end)
-                local Connection2 = Part:GetPropertyChangedSignal("CanCollide"):Connect(function()
-                    if Part.CanCollide == Toggles.BypassSeekingWall.Value then
-                        Part.CanCollide = not Toggles.BypassSeekingWall.Value
-                    end
-                end)
+				local Connection1 = Part:GetPropertyChangedSignal("CanTouch"):Connect(function()
+					if Part.CanTouch == Toggles.BypassSeekingWall.Value then
+						Part.CanTouch = not Toggles.BypassSeekingWall.Value
+					end
+				end)
+				local Connection2 = Part:GetPropertyChangedSignal("CanCollide"):Connect(function()
+					if Part.CanCollide == Toggles.BypassSeekingWall.Value then
+						Part.CanCollide = not Toggles.BypassSeekingWall.Value
+					end
+				end)
 
-                table.insert(Connections, Connection1)
-                table.insert(Connections, Connection2)
-            end
+				table.insert(Connections, Connection1)
+				table.insert(Connections, Connection2)
+			end
 		end
 		table.insert(Objects.Obstructions, Object)
 	elseif Name == "ChestBox" or Name == "ChestBoxLocked" then
@@ -5182,8 +5182,8 @@ Functions.HandleObject = function(Object)
 		Object:SetAttribute("RequiresLineOfSight_Old", Object.RequiresLineOfSight)
 		Object:SetAttribute("MaxActivationDistance_Old", Object.MaxActivationDistance)
 
-		if Toggles.InstantPrompts.Value    then Object.HoldDuration = 0 end
-		if Toggles.PromptClip.Value        then Object.RequiresLineOfSight = false end
+		if Toggles.InstantPrompts.Value	then Object.HoldDuration = 0 end
+		if Toggles.PromptClip.Value		then Object.RequiresLineOfSight = false end
 		Object.MaxActivationDistance = Object:GetAttribute("MaxActivationDistance_Old") * Options.PromptReachSlider.Value
 
 		local LockPromptNames = { UnlockPrompt=true, SkullPrompt=true, LockPrompt=true, ThingToEnable=true, FusesPrompt=true }
@@ -5207,8 +5207,8 @@ Functions.HandleObject = function(Object)
 				FakePrompt.RequiresLineOfSight = Object.RequiresLineOfSight
 				FakePrompt.MaxActivationDistance = Object.MaxActivationDistance
 
-				if Toggles.InstantPrompts.Value    then FakePrompt.HoldDuration = 0 end
-				if Toggles.PromptClip.Value        then FakePrompt.RequiresLineOfSight = false end
+				if Toggles.InstantPrompts.Value	then FakePrompt.HoldDuration = 0 end
+				if Toggles.PromptClip.Value		then FakePrompt.RequiresLineOfSight = false end
 				FakePrompt.MaxActivationDistance = FakePrompt:GetAttribute("MaxActivationDistance_Old") * Options.PromptReachSlider.Value
 
 				FakePrompts[FakePrompt] = Object
@@ -5391,7 +5391,7 @@ end)
 local PromptsToFire = {}
 local PromptCooldown = {}
 
-Functions.FirePrompt      = Abysall.Environment.fireproximityprompt
+Functions.FirePrompt	  = Abysall.Environment.fireproximityprompt
 Functions.ForceFirePrompt = Abysall.Environment.fireproximityprompt
 
 if not Functions.FirePrompt then
@@ -5411,7 +5411,7 @@ if not Functions.FirePrompt then
 			local OldEnable = Prompt.Enabled
 			local OldParent = Prompt.Parent
 			local OldHold   = Prompt.HoldDuration
-			local OldLOS    = Prompt.RequiresLineOfSight
+			local OldLOS	= Prompt.RequiresLineOfSight
 
 			Prompt.MaxActivationDistance = 99999
 			Prompt.Enabled = true
@@ -5588,7 +5588,7 @@ Functions.TriggerPrompt = function(Prompt)
 	if Prompt.Parent.Name == "AlarmClock" and Functions.HasItem("AlarmClock") then return end
 	if Prompt.Parent.Name == "KeyObtainFake" or Prompt.Parent.Name == "TithingPlate" then return end
 
-    -- Archives
+	-- Archives
 	if Prompt.parent.Name == "ArchivesStorageBox" then return end
 	if Prompt.Parent.Name == "Briefcase" then return end
 	if Prompt.Name == "SinkPrompt" or Prompt.Parent.Name == "Faucet" then return end
@@ -5600,7 +5600,7 @@ Functions.TriggerPrompt = function(Prompt)
 	if Prompt.Name == "CartPrompt" or Prompt.Parent.Parent.Name == "ArchivesOfficeChair" then return end
 	if Prompt.Parent.Name == "ArchivesTerminal" then return end
 	if Prompt.Name == "VendorPrompt" then return end
-    if Prompt.Parent.Name == "SeatPart" or Prompt.Name == "SeatPrompt" then return end
+	if Prompt.Parent.Name == "SeatPart" or Prompt.Name == "SeatPrompt" then return end
 
 
 	-- Stairwell
@@ -5617,11 +5617,11 @@ end
 Globals.LastAutoInteractFire = tick()
 Connections.AutoInteract = Services.RunService.Heartbeat:Connect(function()
 	local Active = Toggles.AutoInteractToggle.Value or Options.AutoInteractKeybind:GetState()
-    if not Active then return end
-    if tick() - Globals.LastAutoInteractFire < 1/60 then return end
+	if not Active then return end
+	if tick() - Globals.LastAutoInteractFire < 1/60 then return end
 
 	for _, Prompt in Objects.Prompts do
-        if Prompt:GetAttribute("ParentRoom") and tonumber(Prompt:GetAttribute("ParentRoom")) ~= tonumber(LocalPlayer:GetAttribute("CurrentRoom")) then continue end
+		if Prompt:GetAttribute("ParentRoom") and tonumber(Prompt:GetAttribute("ParentRoom")) ~= tonumber(LocalPlayer:GetAttribute("CurrentRoom")) then continue end
 
 		if Prompt.Parent and (Prompt.Parent:IsA("BasePart") or Prompt.Parent:IsA("Model")) then
 			local Distance
@@ -5635,7 +5635,7 @@ Connections.AutoInteract = Services.RunService.Heartbeat:Connect(function()
 			end
 		end
 	end
-    Globals.LastAutoInteractFire = tick()
+	Globals.LastAutoInteractFire = tick()
 end)
 
 Connections.InfiniteItemsHandler = Services.ProximityPromptService.PromptTriggered:Connect(function(Object)
@@ -5959,8 +5959,8 @@ Library:OnUnload(function()
 	Humanoid.HipHeight  = 2.367
 
 	local BaseY = 0.18
-	Collision.Position          = RootPart.Position + Vector3.new(0, BaseY, 0)
-	CollisionPart.Position      = RootPart.Position + Vector3.new(0, BaseY, 0)
+	Collision.Position		  = RootPart.Position + Vector3.new(0, BaseY, 0)
+	CollisionPart.Position	  = RootPart.Position + Vector3.new(0, BaseY, 0)
 	CollisionPartClone.Position = RootPart.Position + Vector3.new(0, BaseY, 0)
 
 	if Character:FindFirstChild("LowerTorso") and Character.LowerTorso:FindFirstChild("Root") then

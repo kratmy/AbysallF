@@ -9,17 +9,17 @@ local Toggles = Library.Toggles
 local Options = Library.Options
 
 local function CloneReference(Object)
-    if Abysall and Abysall.Environment.cloneref then
-        return Abysall.Environment.cloneref(Object)
-    else
-        return Object
-    end
+	if Abysall and Abysall.Environment.cloneref then
+		return Abysall.Environment.cloneref(Object)
+	else
+		return Object
+	end
 end
 
 local Services = setmetatable({}, {
-    __index = function(self, Name)
-        return CloneReference(game:GetService(Name))
-    end
+	__index = function(self, Name)
+		return CloneReference(game:GetService(Name))
+	end
 })
 
 local Groupboxes = {}
@@ -31,7 +31,7 @@ local LocalPlayer = Services.Players.LocalPlayer
 local RemotesFolder = Services.ReplicatedStorage:WaitForChild("RemotesFolder")
 
 while not LocalPlayer.Character do
-    task.wait()
+	task.wait()
 end
 task.wait(1)
 
@@ -39,31 +39,31 @@ task.wait(1)
 
 
 local Window = Library:CreateWindow({
-    Title = "Abysall Fork Name",
-    Footer = " ",
-    NotifySide = "Right",
-    ShowCustomCursor = true,
-    AutoShow = true,
-    Center = true,
+	Title = "Abysall Fork Name",
+	Footer = " ",
+	NotifySide = "Right",
+	ShowCustomCursor = true,
+	AutoShow = true,
+	Center = true,
 	TabPadding = 3,
 	MenuFadeTime = 0,
-    CornerRadius = 2,
+	CornerRadius = 2,
 })
 
 Abysall.Interface.ApplyInfoTab(Window)
 local Tabs = {
-    General = Window:AddTab("General", "house"),
+	General = Window:AddTab("General", "house"),
 	Visuals = Window:AddTab("Visuals", "eye"),
 }
 
 Functions.CheckCompatability = function(Array)
-    local Valid = true
-    for Index, Name in pairs(Array) do
-        if not Abysall.Environment[Name] then
-            Valid = false
-        end
-    end
-    return Valid
+	local Valid = true
+	for Index, Name in pairs(Array) do
+		if not Abysall.Environment[Name] then
+			Valid = false
+		end
+	end
+	return Valid
 end
 
 local function GetHiddenContainer()
@@ -76,7 +76,7 @@ end
 
 local NotificationLibrary = {
 	LiveNotifications = 0,
-    Notifications = 1
+	Notifications = 1
 }
 
 local Container = Instance.new("ScreenGui")
@@ -86,11 +86,11 @@ Container.DisplayOrder = 32767
 Container.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 if not Library.Scheme then
-    Library.Scheme = setmetatable({}, {
-        __index = function(self, Name)
-            return Library[Name]
-        end
-    })
+	Library.Scheme = setmetatable({}, {
+		__index = function(self, Name)
+			return Library[Name]
+		end
+	})
 end
 
 function NotificationLibrary:Notify(TitleText, Desc, Delay)
@@ -99,7 +99,7 @@ function NotificationLibrary:Notify(TitleText, Desc, Delay)
 		local Line = Instance.new("Frame")
 		local Warning = Instance.new("ImageLabel")
 		local UICorner = Instance.new("UICorner")
-        local UICorner2 = Instance.new("UICorner")
+		local UICorner2 = Instance.new("UICorner")
 		local Title = Instance.new("TextLabel")
 		local Description = Instance.new("TextLabel")
 
@@ -110,8 +110,8 @@ function NotificationLibrary:Notify(TitleText, Desc, Delay)
 		Notification.BorderSizePixel = 0
 		Notification.Position = UDim2.new(1, 5, 0, 60 + (60 * NotificationLibrary.LiveNotifications))
 		Notification.Size = UDim2.new(0, 420, 0, 50)
-        Notification:SetAttribute("ID", NotificationLibrary.Notifications)
-        Notification:SetAttribute("CurrentPosition", Notification.Position)
+		Notification:SetAttribute("ID", NotificationLibrary.Notifications)
+		Notification:SetAttribute("CurrentPosition", Notification.Position)
 
 		Line.Name = "Line"
 		Line.Parent = Notification
@@ -132,8 +132,8 @@ function NotificationLibrary:Notify(TitleText, Desc, Delay)
 		UICorner.CornerRadius = UDim.new(0, 20)
 		UICorner.Parent = Warning
 
-        UICorner2.CornerRadius = UDim.new(0, 4)
-        UICorner2.Parent = Notification
+		UICorner2.CornerRadius = UDim.new(0, 4)
+		UICorner2.Parent = Notification
 
 		Title.Name = "Title"
 		Title.Parent = Notification
@@ -155,57 +155,57 @@ function NotificationLibrary:Notify(TitleText, Desc, Delay)
 		Description.Size = UDim2.new(0, 205, 0, 18)
 		Description.Text = Desc or "..."
 		Description.TextColor3 = Library.Scheme.FontColor
-        Description.TextTransparency = 0.1
+		Description.TextTransparency = 0.1
 		Description.TextSize = 10
 		Description.TextStrokeTransparency = 0.75
 		Description.TextXAlignment = Enum.TextXAlignment.Left
 		
 		NotificationLibrary.LiveNotifications = NotificationLibrary.LiveNotifications + 1
-        NotificationLibrary.Notifications = NotificationLibrary.Notifications + 1
+		NotificationLibrary.Notifications = NotificationLibrary.Notifications + 1
 		Services.TweenService:Create(Notification, TweenInfo.new(1, Enum.EasingStyle.Exponential), {Position = UDim2.new(1, -370, 0, Notification.Position.Y.Offset)}):Play()
 
 		task.wait(0.25)
 		Services.TweenService:Create(Line, TweenInfo.new(Delay - 0.25, Enum.EasingStyle.Linear), {Size = UDim2.new(0, 400, 0, 3)}):Play()
 		task.wait(Delay - 0.25)
 
-        Notification:SetAttribute("Destroying", true)
+		Notification:SetAttribute("Destroying", true)
 		Services.TweenService:Create(Notification, TweenInfo.new(0.75, Enum.EasingStyle.Exponential, Enum.EasingDirection.In), {Position = UDim2.new(1, 5, 0, Notification.Position.Y.Offset)}):Play()
 		NotificationLibrary.LiveNotifications = NotificationLibrary.LiveNotifications - 1
-        
-        for Index, Object in pairs(Container:GetChildren()) do
-            if Object.Name == "Notification" and Object:GetAttribute("ID") and Object:GetAttribute("ID") > Notification:GetAttribute("ID") and Object:GetAttribute("Destroying") ~= true and Object.Position.Y.Offset ~= 60 then
-                Object:SetAttribute("CurrentPosition", UDim2.new(1, -450, 0, Object:GetAttribute("CurrentPosition").Y.Offset - 60))
-                Services.TweenService:Create(Object, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Position = UDim2.new(1, -370, 0, Object:GetAttribute("CurrentPosition").Y.Offset)}):Play()
-            end
-        end
-        task.wait(0.75)
+		
+		for Index, Object in pairs(Container:GetChildren()) do
+			if Object.Name == "Notification" and Object:GetAttribute("ID") and Object:GetAttribute("ID") > Notification:GetAttribute("ID") and Object:GetAttribute("Destroying") ~= true and Object.Position.Y.Offset ~= 60 then
+				Object:SetAttribute("CurrentPosition", UDim2.new(1, -450, 0, Object:GetAttribute("CurrentPosition").Y.Offset - 60))
+				Services.TweenService:Create(Object, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.InOut), {Position = UDim2.new(1, -370, 0, Object:GetAttribute("CurrentPosition").Y.Offset)}):Play()
+			end
+		end
+		task.wait(0.75)
 		Notification:Destroy()
 	end)
 end
 
 Functions.Notify = function(Settings)
-    local Container
-    if Functions.CheckCompatability({"gethui"}) then
-        Container = Abysall.Environment.gethui()
-    else
-        Container = Services.CoreGui
-    end
+	local Container
+	if Functions.CheckCompatability({"gethui"}) then
+		Container = Abysall.Environment.gethui()
+	else
+		Container = Services.CoreGui
+	end
 
-    local Sound = Instance.new("Sound", Container)
-    Sound.SoundId = "rbxassetid://8784885431"
-    Sound.Volume = 3
-    Sound.PlayOnRemove = true
-    Sound:Destroy()
+	local Sound = Instance.new("Sound", Container)
+	Sound.SoundId = "rbxassetid://8784885431"
+	Sound.Volume = 3
+	Sound.PlayOnRemove = true
+	Sound:Destroy()
 
-    NotificationLibrary:Notify(Settings.Title, Settings.Body, Settings.Time or 5)
+	NotificationLibrary:Notify(Settings.Title, Settings.Body, Settings.Time or 5)
 end
 
 Library.Notify = function(Data, Body, Time)
-    Functions.Notify({Title = Body, Time = Time or 5})
+	Functions.Notify({Title = Body, Time = Time or 5})
 end
 
 Functions.CheckElevators = function()
-    local TargetFound = false
+	local TargetFound = false
 	if not Toggles.AutoJoinElevator.Value then
 		return
 	end
@@ -220,8 +220,8 @@ Functions.CheckElevators = function()
 		if TargetCharacter and Elevator and TargetCharacter:GetAttribute("InGameElevator") and Elevator:GetAttribute("ID") and Elevator:GetAttribute("ID") == TargetCharacter:GetAttribute("InGameElevator") then
 			TargetFound = true
 			RemotesFolder.ElevatorJoin:FireServer(Elevator)
-        end
-    end
+		end
+	end
 	if TargetFound == false then
 		RemotesFolder.ElevatorExit:FireServer()
 	end
@@ -229,7 +229,7 @@ end
 
 Globals.RedeemingCodes = false
 Globals.CodesList = {
-    "67",
+	"67",
 	"54",
 	"41",
 	"CHEDDAR BALLS",
@@ -264,48 +264,48 @@ Globals.UnlockedBadges = {}
 Groupboxes.General_Self = Tabs.General:AddLeftGroupbox("Self")
 
 Groupboxes.General_Self:AddToggle("AutoJoinElevator", {
-    Text = "Auto Join Elevator",
-    Default = false,
-    Tooltip = "Automatically joins the selected player's elevator."
+	Text = "Auto Join Elevator",
+	Default = false,
+	Tooltip = "Automatically joins the selected player's elevator."
 })
 
 Groupboxes.General_Self:AddDropdown("AutoJoinElevatorTarget", {
-    Text = "Target",
-    SpecialType = "Player",
-    ExcludeLocalPlayer = true,
-    Searchable = true
+	Text = "Target",
+	SpecialType = "Player",
+	ExcludeLocalPlayer = true,
+	Searchable = true
 })
 
 Groupboxes.General_Automation = Tabs.General:AddLeftGroupbox("Automation")
 
 Groupboxes.General_Automation:AddToggle("CycleAchievements", {
-    Text = "Cycle Achievements",
-    Default = false,
-    Tooltip = "Rapidly equips a random badge."
+	Text = "Cycle Achievements",
+	Default = false,
+	Tooltip = "Rapidly equips a random badge."
 })
 
 Groupboxes.General_Automation:AddSlider("CycleAchievementsDelay", {
-    Text = "Cycle Delay",
-    Min = 0,
-    Max = 1,
-    Default = 0.1,
-    Rounding = 2,
-    Compact = true
+	Text = "Cycle Delay",
+	Min = 0,
+	Max = 1,
+	Default = 0.1,
+	Rounding = 2,
+	Compact = true
 })
 
 Groupboxes.General_Automation:AddDivider()
 
 Groupboxes.General_Automation:AddButton("Redeem All Codes", function()
-    if Globals.RedeemingCodes then
-        return
-    end
+	if Globals.RedeemingCodes then
+		return
+	end
 
-    Functions.Notify({Title = "Redeeming " .. #Globals.CodesList .. " codes.", Body = "Please wait."})
-    Globals.RedeemingCodes = true
-    for Index, Code in pairs(Globals.CodesList) do
-        RemotesFolder.ShopCode:FireServer(Code)
-        task.wait(5.1)
-    end
+	Functions.Notify({Title = "Redeeming " .. #Globals.CodesList .. " codes.", Body = "Please wait."})
+	Globals.RedeemingCodes = true
+	for Index, Code in pairs(Globals.CodesList) do
+		RemotesFolder.ShopCode:FireServer(Code)
+		task.wait(5.1)
+	end
 end)
 
 for Index, Frame in pairs(LocalPlayer.PlayerGui.MainUI.LobbyFrame.Achievements.List:GetChildren()) do
@@ -325,14 +325,14 @@ Globals.LastBadgeChange = tick()
 Globals.LastElevatorCheck = tick()
 Connections.MainConnection = Services.RunService.Heartbeat:Connect(function()
 	if tick() - Globals.LastElevatorCheck > 0.25 then
-    	Functions.CheckElevators()
+		Functions.CheckElevators()
 		Globals.LastElevatorCheck = tick()
 	end
 
-    if Toggles.CycleAchievements.Value and tick() - Globals.LastBadgeChange > Options.CycleAchievementsDelay.Value then
-        local Badge = Globals.UnlockedBadges[math.random(1, #Globals.UnlockedBadges)]
-        if Badge == PreviousBadge then
-            while task.wait() do
+	if Toggles.CycleAchievements.Value and tick() - Globals.LastBadgeChange > Options.CycleAchievementsDelay.Value then
+		local Badge = Globals.UnlockedBadges[math.random(1, #Globals.UnlockedBadges)]
+		if Badge == PreviousBadge then
+			while task.wait() do
 				local NewBadge = Globals.UnlockedBadges[math.random(1, #Globals.UnlockedBadges)]
 				if NewBadge ~= PreviousBadge then
 					Badge = NewBadge
@@ -349,7 +349,7 @@ Connections.MainConnection = Services.RunService.Heartbeat:Connect(function()
 		PreviousBadge = Badge
 		LocalPlayer.PlayerGui.MainUI.LobbyFrame.Achievements.List:FindFirstChild(Badge).Icons.Star.Visible = true
 
-        Globals.LastBadgeChange = tick()
+		Globals.LastBadgeChange = tick()
 	end
 end)
 
@@ -360,12 +360,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Hotel",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Hotel",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -374,12 +374,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Mines",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Mines",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -388,12 +388,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Backdoor",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Backdoor",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -402,12 +402,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Rooms",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Rooms",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -416,12 +416,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Garden",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Garden",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -432,12 +432,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Party",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Party",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -446,12 +446,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Retro",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Retro",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -460,12 +460,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Fools26",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Fools26",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -476,12 +476,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "Halloween25",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "Halloween25",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -490,12 +490,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "BeforePlus",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "BeforePlus",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -504,12 +504,12 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {},
-        	Settings = {},
-        	Destination = "SuperHardMode",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Mods = {},
+			Settings = {},
+			Destination = "SuperHardMode",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -520,14 +520,14 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {
+			Mods = {
 				"AdminPanel"
 			},
-        	Settings = {},
-        	Destination = "Rooms",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Settings = {},
+			Destination = "Rooms",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -536,14 +536,14 @@ Groupboxes.General_QuickPlay:AddButton({
 	DoubleClick = false,
 	Func = function()
 		RemotesFolder.CreateElevator:FireServer({
-        	Mods = {
+			Mods = {
 				"AdminPanel"
 			},
-        	Settings = {},
-        	Destination = "Garden",
-        	FriendsOnly = false,
-        	MaxPlayers = "1"
-    	})
+			Settings = {},
+			Destination = "Garden",
+			FriendsOnly = false,
+			MaxPlayers = "1"
+		})
 	end
 })
 
@@ -551,16 +551,16 @@ Groupboxes.General_QuickPlay:AddButton({
 
 Groupboxes.Visuals_Audio = Tabs.Visuals:AddLeftGroupbox("Audio")
 local RainToggle = Groupboxes.Visuals_Audio:AddToggle("DisableRain", {
-    Text = "Change Rain Volume",
-    Default = false,
+	Text = "Change Rain Volume",
+	Default = false,
 	Tooltip = "Enables Custom Volume For Rain Sounds.",
 })
 
 Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
 	Text = "Glass Rain Sound",
 	Default = 0.2,
-    Min = 0,
-    Max = 1,
+	Min = 0,
+	Max = 1,
 	Rounding = 2,
 	Compact = true,
 })
@@ -568,22 +568,22 @@ Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
 Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
 	Text = "Region Rain Sound",
 	Default = 0.3,
-    Min = 0,
-    Max = 1,
+	Min = 0,
+	Max = 1,
 	Rounding = 2,
 	Compact = true,
 })
 
 Groupboxes.Visuals_Audio:AddButton("Reset Volume To Default", function()
-	Options.GlassVolume:SetValue(Options.GlassVolume.Default)
-	Options.RegionVolume:SetValue(Options.RegionVolume.Default)
+	GlassSlider:SetValue(GlassSlider.Default)
+	RegionSlider:SetValue(RegionSlider.Default)
 	updateRainVolume()
 )
 
 local function updateRainVolume()
-    if not Toggles.DisableRain.Value then
-        for _, object in pairs(workspace:GetDescendants()) do
-            if object:IsA("Sound") then
+	if not Toggles.DisableRain.Value then
+		for _, object in pairs(workspace:GetDescendants()) do
+			if object:IsA("Sound") then
 				local isOnGlass = object.Parent and object.Parent.Name == "Glass"
 				local isInRainRegion = object.Parent and object.Parent.Name == "RainRegion"
 
@@ -592,23 +592,23 @@ local function updateRainVolume()
 				elseif isInRainRegion then
 					object.Volume = Options.RegionVolume.Default
 				end
-            end
-        end
-        return 
-    end
+			end
+		end
+		return 
+	end
 
-    for _, object in pairs(workspace:GetDescendants()) do
-        if object:IsA("Sound") then
-            local isOnGlass = object.Parent and object.Parent.Name == "Glass"
-            local isInRainRegion = object.Parent and object.Parent.Name == "RainRegion"
+	for _, object in pairs(workspace:GetDescendants()) do
+		if object:IsA("Sound") then
+			local isOnGlass = object.Parent and object.Parent.Name == "Glass"
+			local isInRainRegion = object.Parent and object.Parent.Name == "RainRegion"
 
-            if isOnGlass then
-                object.Volume = Options.GlassVolume.Value
-            elseif isInRainRegion then
-                object.Volume = Options.RegionVolume.Value
-            end
-        end
-    end
+			if isOnGlass then
+				object.Volume = Options.GlassVolume.Value
+			elseif isInRainRegion then
+				object.Volume = Options.RegionVolume.Value
+			end
+		end
+	end
 end
 
 RainToggle:OnChanged(updateRainVolume)
@@ -616,7 +616,7 @@ Options.GlassVolume:OnChanged(updateRainVolume)
 Options.RegionVolume:OnChanged(updateRainVolume)
 
 Library:OnUnload(function()
-    Connections.MainConnection:Disconnect()
+	Connections.MainConnection:Disconnect()
 	getgenv().Abysall = nil
 end)
 
