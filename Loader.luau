@@ -14,7 +14,7 @@ getgenv().Abysall = {
     Environment = loadstring(game:HttpGet(BaseUrl .. "Components/Environment.luau"))(),
     ESPLibrary = loadstring(game:HttpGet(BaseUrl .. "Components/ESP.luau"))(),
 
-    Legit = true, -- pog
+    Legit = true,
 }
 
 local function CloneReference(Object)
@@ -59,7 +59,7 @@ if Abysall.Environment.writefile and Abysall.Environment.readfile then
 end
 
 Abysall.Interface = loadstring(game:HttpGet(BaseUrl .. "Components/Interface.luau"))()
---no telemetry
+-- no telemetry
 
 local CurrentGame = GameList[game.GameId]
 if CurrentGame then

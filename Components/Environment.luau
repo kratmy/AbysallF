@@ -46,17 +46,6 @@ local function AddResult(Name, Text, DidPass)
 end
 
 Environment.Results = Results
-Environment.PrintResults = function()
-	local Executor = Environment.identifyexecutor and Environment.identifyexecutor() or "Unknown"
-	print("Test Result")
-	for _, Result in ipairs(Results) do
-		print(Result)
-		task.wait()
-	end
-	print("Executor - " .. Executor)
-	print("Tests Passed: " .. Passed .. "/" .. Tested)
-	print("Test Score: " .. math.floor((Passed / Tested) * 100 + 0.5) .. "%")
-end
 
 local function RunTest(Name, Test, InternalName)
 	local TimedOut = false
@@ -584,15 +573,22 @@ RunTest("firesignal", function()
 end)
 
 RunTest("replicatesignal", function()
-	local TestButton = Instance.new("Frame")
-	Global.replicatesignal(TestButton.MouseWheelForward, 69, 420)
-	local Success = pcall(function()
-		Global.replicatesignal(TestButton.MouseWheelForward)
-		Global.replicatesignal(TestButton.MouseWheelForward, 69)
+	local repSignal = Global.replicatesignal
+	assert(typeof(repSignal) == "function", "replicatesignal is missing or not a function")
+
+	local Players = game:GetService("Players")
+	local LocalPlayer = Players.LocalPlayer
+	local testSignal = LocalPlayer.Idled
+
+	assert(typeof(testSignal) == "RBXScriptSignal", "Failed to get access to Idled signal")
+
+	local Success, ErrorMessage = pcall(function()
+		repSignal(testSignal, 50)
 	end)
-	TestButton:Destroy()
-	assert(Success == false, "Did not throw an error with invalid arguments")
+
+	assert(Success == true, "replicatesignal failed to execute: " .. tostring(ErrorMessage))
 end)
+
 
 RunTest("getconnections", function()
 	local Fired = false

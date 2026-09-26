@@ -1455,6 +1455,7 @@ Groupboxes.Self_Misc:AddButton({
 	DoubleClick = true,
 	Func = function() RemotesFolder.Revive:FireServer() end
 })
+
 Groupboxes.Self_Misc:AddButton({
 	Text = "Reset Character",
 	Tooltip = "Kills your character on the server. (takes around 20 seconds if replicatesignal isn't supported)",
@@ -1472,6 +1473,7 @@ Groupboxes.Self_Misc:AddButton({
 		end
 	end
 })
+
 Groupboxes.Debug = Tabs.General:AddRightGroupbox("Debug")
 Groupboxes.Debug:AddButton({
 	Text = "Void",
@@ -3995,15 +3997,16 @@ Functions.HandleCharacter = function(NewCharacter)
 	Modules.Dread           = UIModules:FindFirstChild("Dread")
 	Modules.SpiderJumpscare = UIModules.SpiderJumpscare
 
-	if Toggles.RemoveScreech.Value    then Modules.Screech.Name = "Screech_Disabled" print ("screech gone") end
-	if Toggles.RemoveA90.Value and Modules.A90   then Modules.A90.Name = "A90_Disabled" end
-	if Toggles.RemoveDread.Value and Modules.Dread then Modules.Dread.Name = "Dread_Disabled" end
-	if Toggles.DisableTimothyJumpscare.Value then Modules.SpiderJumpscare.Name = "SpiderJumpscare_Disabled" end
+	if Toggles.RemoveScreech.Value					then Modules.Screech.Name = "Screech_Disabled" end
+	if Toggles.RemoveA90.Value and Modules.A90		then Modules.A90.Name = "A90_Disabled" end
+	if Toggles.RemoveDread.Value and Modules.Dread	then Modules.Dread.Name = "Dread_Disabled" end
+	if Toggles.DisableTimothyJumpscare.Value 		then Modules.SpiderJumpscare.Name = "SpiderJumpscare_Disabled" end
 
 	if Toggles.DisableHideVignette.Value then
 		local Vignette = Globals.MainUI:FindFirstChild("HideVignette") or Globals.MainUI.MainFrame:FindFirstChild("HideVignette")
 		if Vignette then Vignette.Image = "Disabled" end
 	end
+
 	if Toggles.RemoveInteractingSounds.Value then
 		local PS = Globals.MainUI.Initiator.Main_Game.PromptService
 		PS.Triggered.Volume = 0
@@ -4011,6 +4014,7 @@ Functions.HandleCharacter = function(NewCharacter)
 		PS.Notification.Volume = 0
 		Globals.MainUI.Initiator.Main_Game.Reminder.Caption.Volume = 0
 	end
+
 	if Toggles.DisableEntityJumpscares.Value then
 		local JS = Globals.MainUI.Initiator.Main_Game.RemoteListener:FindFirstChild("Jumpscares")
 		if JS then JS.Name = "Jumpscares_Disabled" end
