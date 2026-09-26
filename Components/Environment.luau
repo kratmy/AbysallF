@@ -523,26 +523,37 @@ RunTest("setthreadidentity", function()
 end)
 
 RunTest("isnetworkowner", function()
-	local Test = Instance.new("Part", Services.Workspace)
-	local RootPart = Services.Players.LocalPlayer.Character.HumanoidRootPart
-	local TestPart
+	while not game:IsLoaded() do
+		task.wait()	-- Remember something
+	end
 
-	for _, Part in ipairs(Services.Workspace:GetDescendants()) do
-		if Part:IsA("BasePart") and Part.Anchored then
-			TestPart = Part
-			break
+	local TestPart
+	while not TestPart do
+		for _, Part in ipairs(Services.Workspace:GetDescendants()) do
+			if Part:IsA("BasePart") and Part.Anchored then
+				TestPart = Part
+				break
+			end
+		end
+		if not TestPart then
+			task.wait(0.1)
 		end
 	end
+
+	local RootPart = Services.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+	local Test = Instance.new("Part")
+	Test.Parent = Services.Workspace
+	
+	task.wait(0.1) 
 
 	RootPart.Anchored = true
 	local IsOwned = Global.isnetworkowner(RootPart)
 	RootPart.Anchored = false
 
 	local IsClientOwned = Global.isnetworkowner(Test)
-	local IsNotOwned = TestPart and Global.isnetworkowner(TestPart)
+	local IsNotOwned = Global.isnetworkowner(TestPart)
 	Test:Destroy()
 
-	assert(TestPart ~= nil, "Skipped, no anchored part to test with")
 	assert(IsClientOwned == true, "Did not return true for a client owned part")
 	assert(IsNotOwned == false, "Did not return false for a non client owned part")
 	assert(IsOwned == true, "Did not return true for a client owned anchored part")

@@ -8,14 +8,14 @@ return function(Window)
 		"<font color='rgb(0, 255, 0)'>+ Added Disable Rain In Doors Lobby</font>",
 		"<font color='rgb(0, 255, 0)'>+ Added Visuals In Doors Lobby</font>",
 		"<font color='rgb(0, 255, 0)'>+ Added Reset Volume Button</font>",
-		"<font color='rgb(0, 255, 0)'>+ Enabled Custom Cursor In Doors Lobby</font>",
 
 		-- Yellow = Sum shi
-		"<font color='rgb(255, 255, 0)'>~ FIXED REPLICATESIGNAL!!!!!!</font>",
+		"<font color='rgb(255, 255, 0)'>~ Fixed ReplicateSignal</font>",
+		"<font color='rgb(255, 255, 0)'>~ Fixed IsNetworkOwner</font>",
 		"<font color='rgb(255, 255, 0)'>~ Fixed Queue On Teleport</font>",
 		"<font color='rgb(255, 255, 0)'>~ Fixed Empty Tabs Cuz Im Stupid</font>",
 		"<font color='rgb(255, 255, 0)'>~ Fixed Functions Not Being Red</font>",
-		"<font color='rgb(255, 255, 0)'>~ Fixed Visuals Being Completion</font>",
+		"<font color='rgb(255, 255, 0)'>~ Fixed Groupboxes Names</font>",
 		"<font color='rgb(255, 255, 0)'>~ Fixed More Functions Not Being Red</font>",
 		"<font color='rgb(255, 255, 0)'>~ Fixed Disable Rain</font>",
 		"<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
@@ -76,7 +76,7 @@ return function(Window)
 		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
 		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
 	}
-	
+
 
     local Changelog = InfoTab:AddRightGroupbox("Changelog")
 	for Index, Change in pairs(LatestChangelog) do
