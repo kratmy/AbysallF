@@ -573,7 +573,8 @@ Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
 })
 
 local function updateRainVolume()
-    if not Options.DisableRain.Value then 
+	print(Options.DisableRain.Value)
+    if not Options.DisableRain.Value then
         for _, object in pairs(workspace:GetDescendants()) do
             if object:IsA("Sound") then
 				local isOnGlass = object.Parent and object.Parent.Name == "Glass"
