@@ -1,5 +1,5 @@
 if Abysall then
-    --return 
+    --return -- Remember disabled ts
 end
 getgenv().Abysall = {
     Legit = true
@@ -59,7 +59,6 @@ if Abysall.Environment.writefile and Abysall.Environment.readfile then
 end
 
 Abysall.Interface = loadstring(game:HttpGet(BaseUrl .. "Components/Interface.luau"))()
--- no telemetry
 
 local CurrentGame = GameList[game.GameId]
 if CurrentGame then

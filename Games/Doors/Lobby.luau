@@ -35,6 +35,9 @@ while not LocalPlayer.Character do
 end
 task.wait(1)
 
+-- Data lobby doors
+
+
 local Window = Library:CreateWindow({
     Title = "Abysall Fork Name",
     Footer = " ",
@@ -50,6 +53,7 @@ local Window = Library:CreateWindow({
 Abysall.Interface.ApplyInfoTab(Window)
 local Tabs = {
     General = Window:AddTab("General", "house"),
+	Visuals = Window:AddTab("Visuals", "eye"),
 }
 
 Functions.CheckCompatability = function(Array)
@@ -540,6 +544,68 @@ Groupboxes.General_QuickPlay:AddButton({
     	})
 	end
 })
+
+-- Visuals
+
+Groupboxes.Visuals_Audio = Tabs.Visuals:AddLeftGroupbox("Audio")
+local RainToggle = Groupboxes.Visuals_Audio:AddToggle("DisableRain", {
+    Text = "Change Rain Volume",
+    Default = false,
+	Tooltip = "Enables Custom Volume For Rain Sounds.",
+})
+
+Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
+	Text = "Glass Rain Sound",
+	Default = 0.2,
+    Min = 0,
+    Max = 1,
+	Rounding = 2,
+	Compact = true,
+})
+
+Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
+	Text = "Region Rain Sound",
+	Default = 0.3,
+    Min = 0,
+    Max = 1,
+	Rounding = 2,
+	Compact = true,
+})
+
+local function updateRainVolume()
+    if not Options.DisableRain.Value then 
+        for _, object in pairs(workspace:GetDescendants()) do
+            if object:IsA("Sound") then
+				local isOnGlass = object.Parent and object.Parent.Name == "Glass"
+				local isInRainRegion = object.Parent and object.Parent.Name == "RainRegion"
+
+				if isOnGlass then
+					object.Volume = Options.GlassVolume.Default
+				elseif isInRainRegion then
+					object.Volume = Options.RegionVolume.Default
+				end
+            end
+        end
+        return 
+    end
+
+    for _, object in pairs(workspace:GetDescendants()) do
+        if object:IsA("Sound") then
+            local isOnGlass = object.Parent and object.Parent.Name == "Glass"
+            local isInRainRegion = object.Parent and object.Parent.Name == "RainRegion"
+
+            if isOnGlass then
+                object.Volume = Options.GlassVolume.Value
+            elseif isInRainRegion then
+                object.Volume = Options.RegionVolume.Value
+            end
+        end
+    end
+end
+
+RainToggle:OnChanged(updateRainVolume)
+Options.GlassVolume:OnChanged(updateRainVolume)
+Options.RegionVolume:OnChanged(updateRainVolume)
 
 Library:OnUnload(function()
     Connections.MainConnection:Disconnect()

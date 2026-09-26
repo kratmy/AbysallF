@@ -1221,7 +1221,7 @@ local Window = Library:CreateWindow({
 
 
 
--- Data
+-- Data main doors
 
 
 
@@ -1239,7 +1239,7 @@ local Tabs = {
 
     Legacy    = Window:AddTab("Legacy", "archive"),
 
-    Garden  = Window:AddTab("The Outdoors", "trees"), 
+    Garden    = Window:AddTab("The Outdoors", "trees"), 
     Archives  = Window:AddTab("Archives", "rbxassetid://104508835882225"),
     Stairwell = Window:AddTab("Stairwell", "rbxassetid://80017304328364"),
 }

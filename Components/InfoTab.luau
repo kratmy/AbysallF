@@ -4,17 +4,21 @@ return function(Window)
 
 		-- Green = Added
 		"<font color='rgb(0, 255, 0)'>+ Added Bypassed DarkDexV3</font>",
-        "<font color='rgb(0, 255, 0)'>+ ADDED NEW TABS SORT</font>",
+        "<font color='rgb(0, 255, 0)'>+ Added Tabs Sort</font>",
+        "<font color='rgb(0, 255, 0)'>+ Added Disable Rain In Doors Lobby</font>",
+        "<font color='rgb(0, 255, 0)'>+ Added Visuals In Doors Lobby</font>",
         "<font color='rgb(0, 255, 0)'>+ Enabled Custom Cursor In Doors Lobby</font>",
 
         -- Yellow = Sum shi
-		"<font color='rgb(255, 255, 0)'>~ Updated Default Themes</font>",
+        "<font color='rgb(255, 255, 0)'>~ FIXED REPLICATESIGNAL!!!!!!</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Queue On Teleport</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Empty Tabs Cuz Im Stupid</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Functions Not Being Red</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed Visuals Being Completion</font>",
-        "<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
         "<font color='rgb(255, 255, 0)'>~ Fixed MORE Functions Not Being Red</font>",
+        "<font color='rgb(255, 255, 0)'>~ Moved Some Tabs</font>",
+        "<font color='rgb(255, 255, 0)'>~ Moved Changelog Above Credits</font>",
+        "<font color='rgb(255, 255, 0)'>~ Updated Default Themes</font>",
 
         -- Red = Removed
         "<font color='rgb(255, 0, 0)'>- Removed Knob Farm :(</font>",
@@ -22,6 +26,10 @@ return function(Window)
         "<font color='rgb(255, 0, 0)'>- Removed Abysall Hub Names</font>",
         "<font color='rgb(255, 0, 0)'>- Removed FOV KeyBind</font>",
     }
+
+
+
+
     local function CloneReference(Object)
         if Abysall and Abysall.Environment.cloneref then
             return Abysall.Environment.cloneref(Object)
