@@ -556,7 +556,7 @@ local RainToggle = Groupboxes.Visuals_Audio:AddToggle("DisableRain", {
 	Tooltip = "Enables Custom Volume For Rain Sounds.",
 })
 
-Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
+local GlassSlider = Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
 	Text = "Glass Rain Sound",
 	Default = 0.2,
 	Min = 0,
@@ -565,7 +565,7 @@ Groupboxes.Visuals_Audio:AddSlider("GlassVolume", {
 	Compact = true,
 })
 
-Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
+local RegionSlider = Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
 	Text = "Region Rain Sound",
 	Default = 0.3,
 	Min = 0,
@@ -574,11 +574,6 @@ Groupboxes.Visuals_Audio:AddSlider("RegionVolume", {
 	Compact = true,
 })
 
-Groupboxes.Visuals_Audio:AddButton("Reset Volume To Default", function()
-	GlassSlider:SetValue(GlassSlider.Default)
-	RegionSlider:SetValue(RegionSlider.Default)
-	updateRainVolume()
-)
 
 local function updateRainVolume()
 	if not Toggles.DisableRain.Value then
@@ -610,6 +605,12 @@ local function updateRainVolume()
 		end
 	end
 end
+
+Groupboxes.Visuals_Audio:AddButton("Reset Volume To Default", function()
+	GlassSlider:SetValue(GlassSlider.Default)
+	RegionSlider:SetValue(RegionSlider.Default)
+	updateRainVolume()
+end)
 
 RainToggle:OnChanged(updateRainVolume)
 Options.GlassVolume:OnChanged(updateRainVolume)
