@@ -30,9 +30,14 @@ return function(Window)
 	}
 
 
-
-
-
+    local CreditsList = {
+		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
+		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
+		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
+		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
+		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
+	}
+	
 	local function CloneReference(Object)
 		if Abysall and Abysall.Environment.cloneref then
 			return Abysall.Environment.cloneref(Object)
@@ -64,27 +69,40 @@ return function(Window)
 
 	local Content = Services.Players:GetUserThumbnailAsync(LocalPlayer.UserId, ImageType, ImageSize)
 
-    local CreditsList = {
-		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
-		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
-		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
-		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
-		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
-	}
-
-
-    -- LEFT
-    -- User
-
-	User:AddImage("UserIcon", { Image = Content })
+	User:AddImage("UserIcon", {
+		Image = Content
+	})
 
 	User:AddLabel("ID: " .. LocalPlayer.Name, true)
 	User:AddLabel("Total Executions: " .. (Abysall.TotalExecutions and Abysall.TotalExecutions or "N/A"), true)
 
 
-    -- Scripts
 
-    local Scripts = InfoTab:AddLeftGroupbox("Scripts")
+    local Changelog = InfoTab:AddRightGroupbox("Changelog")
+	for Index, Change in pairs(LatestChangelog) do
+		Changelog:AddLabel(Change, true)
+	end
+
+	local Credits = InfoTab:AddRightGroupbox("Credits")
+	for Index, Credit in pairs(CreditsList) do
+		Credits:AddLabel(Credit, true)
+	end
+
+	local Name, Version = Abysall.Environment.identifyexecutor()
+	local Executor = InfoTab:AddRightGroupbox("Executor Info")
+	Executor:AddLabel("Name: " .. Name, true)
+	Executor:AddLabel("Version: " .. (Version and Version or "N/A"), true)
+	Executor:AddDivider()
+	Executor:AddLabel("Test Result: ", true)
+
+	for Index, Result in pairs(Abysall.Environment.Results) do
+		Result = Result:gsub("<", "(")
+		Result = Result:gsub(">", ")")
+		
+		Executor:AddLabel(Result, true)
+	end
+
+	local Scripts = InfoTab:AddLeftGroupbox("Scripts")
 	Scripts:AddButton("InfiniteYield", {
 		Text = "Infinite Yield",
 		Default = false,
@@ -102,39 +120,4 @@ return function(Window)
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/refs/heads/main/Universal/BypassedDarkDexV3.lua"))()
 		end
 	})
-
-
-    -- RIGHT
-
-    -- Changelog
-
-    local Changelog = InfoTab:AddRightGroupbox("Changelog")
-	for Index, Change in pairs(LatestChangelog) do
-		Changelog:AddLabel(Change, true)
-	end
-
-    -- Credits
-
-	local Credits = InfoTab:AddRightGroupbox("Credits")
-	for Index, Credit in pairs(CreditsList) do
-		Credits:AddLabel(Credit, true)
-	end
-
-    -- Executor Info
-
-	local Name, Version = Abysall.Environment.identifyexecutor()
-	local Executor = InfoTab:AddRightGroupbox("Executor Info")
-	Executor:AddLabel("Name: " .. Name, true)
-	Executor:AddLabel("Version: " .. (Version and Version or "N/A"), true)
-	Executor:AddDivider()
-	Executor:AddLabel("Test Result: ", true)
-
-	for Index, Result in pairs(Abysall.Environment.Results) do
-		Result = Result:gsub("<", "(")
-		Result = Result:gsub(">", ")")
-		
-		Executor:AddLabel(Result, true)
-	end
-
-
 end
