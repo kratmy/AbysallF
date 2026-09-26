@@ -33,17 +33,6 @@ return function(Window)
 
 
 
-
-    local CreditsList = {
-		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
-		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
-		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
-		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
-		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
-	}
-
-
-
 	local function CloneReference(Object)
 		if Abysall and Abysall.Environment.cloneref then
 			return Abysall.Environment.cloneref(Object)
@@ -74,6 +63,14 @@ return function(Window)
 	local ImageType = Enum.ThumbnailType.HeadShot
 
 	local Content = Services.Players:GetUserThumbnailAsync(LocalPlayer.UserId, ImageType, ImageSize)
+
+    local CreditsList = {
+		"<font color='rgb(27, 189, 198)'>Kratmy — Owner of this aah fork</font>",
+		"<font color='rgb(255, 165, 0)'>FireBacon — Owner of the Discontinued Script</font>",
+		"<font color='rgb(197, 63, 132)'>Rhyan57 — Provided the Infinite Crucifix</font>",
+		"<font color='rgb(241, 106, 212)'>Abbas - Basicly a developer</font>",
+		"<font color='rgb(50, 205, 50)'>" .. LocalPlayer.Name .. " — For Using This Script</font>"
+	}
 
 
     -- LEFT
